@@ -1,54 +1,56 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodController : MonoBehaviour
+public class PowerController : MonoBehaviour
 {
     [SerializeField]
-    private FoodType foodtype;
+    private PowerUpType powertype;
+
+    [SerializeField]
+    private float activeTime = 3;
 
     private BoxCollider2D gridArea;
     Bounds bounds;
-
-    [SerializeField]
-    private float activeTime;
 
     private void Start()
     {
         gridArea = GameObject.FindGameObjectWithTag("GridArea").GetComponent<BoxCollider2D>();
         bounds = gridArea.bounds;
     }
+
     private void OnEnable()
     {
-        StartCoroutine(FoodLifetime());
+        StartCoroutine(PowerLifetime());
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.GetComponent<SnakeController>() != null)
-        {
-            RandomizedPosition();
-        }
-    }
-    private void RandomizedPosition()
+
+    private void RandomizePosition()
     {
         float x = Random.Range(bounds.min.x, bounds.max.x);
         float y = Random.Range(bounds.min.y, bounds.max.y);
 
-        transform.position = new Vector3(Mathf.Round(x), Mathf.Round(y), 0.0f);
+        this.transform.position = new Vector3(Mathf.Round(x), Mathf.Round(y), 0.0f);
     }
-    IEnumerator FoodLifetime()
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<SnakeController>() != null)
+        {
+            RandomizePosition();
+        }
+    }
+
+    IEnumerator PowerLifetime()
     {
         yield return new WaitForSeconds(activeTime);
         Destroy(gameObject);
     }
-    public FoodType GetFoodType()
-    {
-        return foodtype;
-    }
-}
 
+}
 //Enum for food type
-public enum FoodType
+public enum PowerUpType
 {
-    MassGainer,
-    MassBurner
+    ShieldEffect,
+    SpeedUp,
+    ScoreBoost
 }
