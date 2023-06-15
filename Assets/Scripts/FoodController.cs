@@ -11,7 +11,7 @@ public class FoodController : MonoBehaviour
         RandomizePosition();
     }
 
-    private void RandomizePosition()  
+    private void RandomizePosition()
     {
         Bounds bounds = this.FoodgridArea.bounds;
 
@@ -23,7 +23,7 @@ public class FoodController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        if (collision.tag == "Player")
         {
             RandomizePosition();
             Invoke("ShieldActive", 2f);
