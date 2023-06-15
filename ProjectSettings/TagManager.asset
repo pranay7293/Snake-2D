@@ -4,11 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Food
   - Obstacle
+  - Shiled
+  - Food
+  - Wall
+  - FoodGrid
+  - SnakeGrid
   - Shield
-  - Walls
-  - Grid
   layers:
   - Default
   - TransparentFX
