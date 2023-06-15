@@ -6,11 +6,11 @@ TagManager:
   tags:
   - Obstacle
   - Shiled
-  - Food
   - Wall
-  - FoodGrid
-  - SnakeGrid
   - Shield
+  - GreenFood
+  - RedFood
+  - GridArea
   layers:
   - Default
   - TransparentFX

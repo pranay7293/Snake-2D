@@ -18,7 +18,7 @@ public class SnakeController : MonoBehaviour
 
     private Vector2Int direction = Vector2Int.right;
 
-    public BoxCollider2D SnakegridArea;
+    public BoxCollider2D gridArea;
     private Bounds bounds;
 
     private List<Transform> _segments;
@@ -26,7 +26,7 @@ public class SnakeController : MonoBehaviour
 
     private void Start()
     {
-        bounds = SnakegridArea.bounds;
+        bounds = gridArea.bounds;
         hasShield = false;
 
         _segments = new List<Transform>();
@@ -107,17 +107,16 @@ public class SnakeController : MonoBehaviour
     }
 
     
-    private void Grow()
-    {
-        Transform segment = Instantiate(this.segmentPrefab);
-        segment.position = _segments[_segments.Count - 1].position;
-        _segments.Add(segment);
-    }
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Food"))
+        if (collision.CompareTag("GreenFood"))
         {
             Grow();
+        }
+        else if (collision.CompareTag("RedFood"))
+        {
+            Shrink();
         }
         else if (collision.CompareTag("Shield"))
         {
@@ -126,8 +125,24 @@ public class SnakeController : MonoBehaviour
         else if (!hasShield && collision.CompareTag("Obstacle"))
         {
             ResetState();           
+        }        
+    }
+
+    private void Grow()
+    {
+        Transform segment = Instantiate(this.segmentPrefab);
+        segment.position = _segments[_segments.Count - 1].position;
+        _segments.Add(segment);
+    }
+
+    private void Shrink()
+    {
+        if (_segments.Count > initialSize)
+        {
+            Transform lastSegment = _segments[_segments.Count - 1];
+            _segments.RemoveAt(_segments.Count - 1);
+            Destroy(lastSegment.gameObject);
         }
-        
     }
 
     private void ResetState()
