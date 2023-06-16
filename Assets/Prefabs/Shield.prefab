@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3515518407261813111}
   - component: {fileID: 3515518407261813110}
   - component: {fileID: 3515518407261813108}
-  - component: {fileID: 3515518407261813109}
+  - component: {fileID: -4634003651817206577}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Shield
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3515518407261813105}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -113,7 +113,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.8}
   m_EdgeRadius: 0
---- !u!114 &3515518407261813109
+--- !u!114 &-4634003651817206577
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3515518407261813105}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4fb6c56044504a4e9bb15a08fba04f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f83bfbf3e6e97e48841ea606e9c7037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   powertype: 0

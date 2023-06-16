@@ -3,18 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Obstacle
-  - Food
-  - Shield
-  - GreenFood
-  - RedFood
-  - GridArea
-  - ScoreBoost
-  - SpeedUp
-  - GreenFood
-  - RedFood
-  - GridArea
+  tags: []
   layers:
   - Default
   - TransparentFX

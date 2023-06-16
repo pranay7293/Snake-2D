@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5374906370813331282}
   - component: {fileID: 5374906370813331285}
   - component: {fileID: 5374906370813331283}
-  - component: {fileID: 6818502798571337408}
+  - component: {fileID: -5716364797207117559}
   m_Layer: 0
   m_Name: ScoreBoost
   m_TagString: ScoreBoost
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &5374906370813331283
@@ -115,7 +115,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 1.5}
   m_EdgeRadius: 0
---- !u!114 &6818502798571337408
+--- !u!114 &-5716364797207117559
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5374906370813331284}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4fb6c56044504a4e9bb15a08fba04f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f83bfbf3e6e97e48841ea606e9c7037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   powertype: 2

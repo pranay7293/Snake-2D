@@ -48,7 +48,7 @@ public class PowerController : MonoBehaviour
 
 }
 //Enum for food type
-public enum PowerUpType
+    public enum PowerUpType
 {
     ShieldEffect,
     SpeedUp,
