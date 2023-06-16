@@ -5,9 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Obstacle
-  - Shiled
-  - Wall
+  - Food
   - Shield
+  - GreenFood
+  - RedFood
+  - GridArea
+  - ScoreBoost
+  - SpeedUp
   - GreenFood
   - RedFood
   - GridArea

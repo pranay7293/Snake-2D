@@ -8,7 +8,7 @@ public class PowerController : MonoBehaviour
     private PowerUpType powertype;
 
     [SerializeField]
-    private float activeTime = 3;
+    private float activeTime = 3f;
 
     private BoxCollider2D gridArea;
     Bounds bounds;
