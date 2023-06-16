@@ -35,7 +35,7 @@ public class SnakeController : MonoBehaviour
     private float PowerAcivated = 3f;
     private int score = 0;
 
-    public BoxCollider2D SnakegridArea;
+    public BoxCollider2D gridArea;
     private Bounds bounds;
 
     private Vector2Int direction1 = Vector2Int.right;
@@ -48,7 +48,7 @@ public class SnakeController : MonoBehaviour
 
     private void Start()
     {
-        bounds = SnakegridArea.bounds;
+        bounds = gridArea.bounds;
         hasShield = false;
 
         _segments = new List<Transform>();
@@ -168,18 +168,6 @@ public class SnakeController : MonoBehaviour
         }
     }
 
-<<<<<<< Updated upstream
-    
-    private void Grow()
-    {
-        Transform segment = Instantiate(this.segmentPrefab);
-        segment.position = _segments[_segments.Count - 1].position;
-        _segments.Add(segment);
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Food"))
-=======
     private float GetRotationAngleFromDirection(Vector2Int directionx)
     {
         if (directionx == Vector2Int.up)
@@ -221,7 +209,6 @@ public class SnakeController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!isPaused)
->>>>>>> Stashed changes
         {
 
             if (collision.CompareTag("GreenFood"))
@@ -259,9 +246,7 @@ public class SnakeController : MonoBehaviour
                 Invoke(nameof(PlayerWin), 3f);
             }
         }
-<<<<<<< Updated upstream
-        else if (collision.CompareTag("Shield"))
-=======
+
     }
     private void PlayerWin()
     {
@@ -270,15 +255,10 @@ public class SnakeController : MonoBehaviour
             GameManager.Instance.SnakeWin(SnakePlayer.Snake2);
         }
         else if (player == SnakePlayer.Snake2)
->>>>>>> Stashed changes
         {
             GameManager.Instance.SnakeWin(SnakePlayer.Snake1);
         }
-<<<<<<< Updated upstream
-        else if (!hasShield && collision.CompareTag("Obstacle"))
-        {
-            ResetState();           
-=======
+        
     }
 
     private void Grow()
@@ -295,9 +275,8 @@ public class SnakeController : MonoBehaviour
             Transform lastSegment = _segments[_segments.Count - 1];
             _segments.RemoveAt(_segments.Count - 1);
             Destroy(lastSegment.gameObject);
->>>>>>> Stashed changes
+
         }
-        
     }
 
     public void ResetState()
