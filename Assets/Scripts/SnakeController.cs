@@ -2,27 +2,49 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
+public enum SnakePlayer
+{
+    Snake1,
+    Snake2
+}
 public class SnakeController : MonoBehaviour
 {
     [SerializeField]
-    private float speed;
+    public SnakePlayer player;
 
     [SerializeField]
     private int initialSize;
 
-    public GameObject shieldeffect;
-    private bool hasShield;
-    private float shieldDuration = 4f;
-    private float shieldTimer;
+    [SerializeField]
+    private TextMeshProUGUI scoreText;
 
-    private Vector2Int direction = Vector2Int.right;
+    public ScoreController scoreController;
+
+    public bool isPaused = false;
+
+
+    public GameObject shieldeffect;
+    public GameObject speedUp;
+    public GameObject scoreBoost;
+    private bool hasShield;
+    private bool hasspeedUp;
+    private bool hasScoreboost;
+    private float PowerAcivated = 3f;
+    private int score = 0;
 
     public BoxCollider2D SnakegridArea;
     private Bounds bounds;
 
+    private Vector2Int direction1 = Vector2Int.right;
+    private Vector2Int direction2 = Vector2Int.left;
+
+
     private List<Transform> _segments;
     public Transform segmentPrefab;
+    
 
     private void Start()
     {
@@ -39,32 +61,44 @@ public class SnakeController : MonoBehaviour
 
     private void Update()
     {
-        SnakeMovement();
-        MovementChange();
-
-        if (hasShield)
+        if (!isPaused)
         {
-            shieldTimer -= Time.deltaTime;
-
-            if (shieldTimer <= 0f)
-            {
-                // Deactivate the shield
-                DeactivateShield();
-            }
-        }
+            SnakeMovement();
+            MovementChange();
+        }              
     }
+
     private void FixedUpdate()
     {
-        for (int i = _segments.Count - 1; i > 0; i--)
+        if (!isPaused)
         {
-            _segments[i].position = _segments[i - 1].position;
-        }
+            if(player == SnakePlayer.Snake1)
+            {
+                for (int i = _segments.Count - 1; i > 0; i--)
+                {
+                    _segments[i].position = _segments[i - 1].position;
+                }
 
-        this.transform.position = new Vector3(
-            this.transform.position.x + direction.x * speed,
-            this.transform.position.y + direction.y * speed,
-            0.0f);
-    }
+                this.transform.position = new Vector3(
+                    this.transform.position.x + direction1.x,
+                    this.transform.position.y + direction1.y,
+                    0.0f);
+            }
+            else if (player == SnakePlayer.Snake2)
+            {
+                for (int i = _segments.Count - 1; i > 0; i--)
+                {
+                    _segments[i].position = _segments[i - 1].position;
+                }
+
+                this.transform.position = new Vector3(
+                    this.transform.position.x + direction2.x,
+                    this.transform.position.y + direction2.y,
+                    0.0f);
+            }
+
+        }
+    }    
 
     private void MovementChange()
     {
@@ -88,24 +122,53 @@ public class SnakeController : MonoBehaviour
 
     private void SnakeMovement()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && direction.x != 1)
+        if (player == SnakePlayer.Snake1)
         {
-            direction = Vector2Int.left;
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && direction1.x != 1)
+            {
+                direction1 = Vector2Int.left;
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow) && direction1.x != -1)
+            {
+                direction1 = Vector2Int.right;
+            }
+            else if (Input.GetKeyDown(KeyCode.UpArrow) && direction1.y != -1)
+            {
+                direction1 = Vector2Int.up;
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow) && direction1.y != 1)
+            {
+                direction1 = Vector2Int.down;
+            }
+            shieldeffect.transform.rotation = Quaternion.Euler(0, 0, GetRotationAngleFromDirection(direction1));
+            scoreBoost.transform.rotation = Quaternion.Euler(0, 0, GetRotationAngleFromDirection(direction1));
+            speedUp.transform.rotation = Quaternion.Euler(0, 0, GetRotationAngleFromDirection(direction1));
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && direction.x != -1)
+        else if(player == SnakePlayer.Snake2)
         {
-            direction = Vector2Int.right;
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow) && direction.y != -1)
-        {
-            direction = Vector2Int.up;
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) && direction.y != 1)
-        {
-            direction = Vector2Int.down;
+            if (Input.GetKeyDown(KeyCode.A) && direction2.x != 1)
+            {
+                direction2 = Vector2Int.left;
+            }
+            else if (Input.GetKeyDown(KeyCode.D) && direction2.x != -1)
+            {
+                direction2 = Vector2Int.right;
+            }
+            else if (Input.GetKeyDown(KeyCode.W) && direction2.y != -1)
+            {
+                direction2 = Vector2Int.up;
+            }
+            else if (Input.GetKeyDown(KeyCode.S) && direction2.y != 1)
+            {
+                direction2 = Vector2Int.down;
+            }
+            shieldeffect.transform.rotation = Quaternion.Euler(0, 0, GetRotationAngleFromDirection(direction2));
+            scoreBoost.transform.rotation = Quaternion.Euler(0, 0, GetRotationAngleFromDirection(direction2));
+            speedUp.transform.rotation = Quaternion.Euler(0, 0, GetRotationAngleFromDirection(direction2));
         }
     }
 
+<<<<<<< Updated upstream
     
     private void Grow()
     {
@@ -116,21 +179,128 @@ public class SnakeController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Food"))
+=======
+    private float GetRotationAngleFromDirection(Vector2Int directionx)
+    {
+        if (directionx == Vector2Int.up)
         {
-            Grow();
+            return 90f; // 90 degrees rotation
         }
+        else if (directionx == Vector2Int.right)
+        {
+            return 0f; // No rotation
+        }
+        else if (directionx == Vector2Int.down)
+        {
+            return -90f; // -90 degrees rotation
+        }
+        else if (directionx == Vector2Int.left)
+        {
+            return 180f; // 180 degrees rotation
+        }
+        return 0f;
+    }
+
+    private void UpdateScore(bool isGreenFood)
+    {
+        int scoreChange = isGreenFood ? 10 : -10;
+
+        if (hasScoreboost)
+        {
+            scoreChange *= 2;
+        }        
+            score += scoreChange;
+
+        UpdateScoreUI();
+    }
+    private void UpdateScoreUI()
+    {
+        scoreText.text = "Score: " + score.ToString();       
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!isPaused)
+>>>>>>> Stashed changes
+        {
+
+            if (collision.CompareTag("GreenFood"))
+            {
+                UpdateScore(true);
+                Grow();
+            }
+            else if (collision.CompareTag("RedFood"))
+            {
+                UpdateScore(false);
+                Shrink();
+            }
+            else if (collision.CompareTag("Shield"))
+            {
+                ActivateShield();
+            }
+            else if (collision.CompareTag("SpeedUp"))
+            {
+                ActivateSpeedUp();
+            }
+            else if (collision.CompareTag("ScoreBoost"))
+            {
+                ActivateScoreBoost();
+            }
+            else if (!hasShield && collision.CompareTag("Obstacle") && SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                scoreController.IncreaseScore(score);
+                scoreController.DecreaseLives();
+                score = 0;
+                scoreText.text = "Score: " + score.ToString();
+            }
+            else if (!hasShield && collision.CompareTag("Obstacle") && SceneManager.GetActiveScene().buildIndex == 2)
+            {
+                isPaused = true;
+                Invoke(nameof(PlayerWin), 3f);
+            }
+        }
+<<<<<<< Updated upstream
         else if (collision.CompareTag("Shield"))
+=======
+    }
+    private void PlayerWin()
+    {
+        if (player == SnakePlayer.Snake1)
         {
-            ActivateShield();
+            GameManager.Instance.SnakeWin(SnakePlayer.Snake2);
         }
+        else if (player == SnakePlayer.Snake2)
+>>>>>>> Stashed changes
+        {
+            GameManager.Instance.SnakeWin(SnakePlayer.Snake1);
+        }
+<<<<<<< Updated upstream
         else if (!hasShield && collision.CompareTag("Obstacle"))
         {
             ResetState();           
+=======
+    }
+
+    private void Grow()
+    {
+        Transform segment = Instantiate(this.segmentPrefab);
+        segment.position = _segments[_segments.Count - 1].position;
+        _segments.Add(segment);
+    }
+
+    private void Shrink()
+    {
+        if (_segments.Count > initialSize)
+        {
+            Transform lastSegment = _segments[_segments.Count - 1];
+            _segments.RemoveAt(_segments.Count - 1);
+            Destroy(lastSegment.gameObject);
+>>>>>>> Stashed changes
         }
         
     }
 
-    private void ResetState()
+    public void ResetState()
     {
     for(int i = 1; i < _segments.Count; i++)
         {
@@ -151,12 +321,55 @@ public class SnakeController : MonoBehaviour
     {
         hasShield = true;
         shieldeffect.SetActive(true);
-        shieldTimer = shieldDuration;
+        StartCoroutine(PowerTimerRoutine());
+    }   
+    
+    private void ActivateSpeedUp()
+    {
+        hasspeedUp = true;
+        speedUp.SetActive(true);
+        Time.fixedDeltaTime = 0.04f;
+        StartCoroutine(PowerTimerRoutine());    
     }
+    
+    private void ActivateScoreBoost()
+    {
+        hasScoreboost = true;
+        scoreBoost.SetActive(true);
+        StartCoroutine(PowerTimerRoutine());
+    }    
+
+    private IEnumerator PowerTimerRoutine()
+    {
+        yield return new WaitForSeconds(PowerAcivated);
+        if(hasShield)
+        {
+            DeactivateShield();
+        }
+        if(hasspeedUp)
+        {
+            DeactivateSpeedUp();
+        }
+        if (hasScoreboost)
+        {
+            DeactivateScoreBoost();
+        }        
+    }
+
     private void DeactivateShield()
     {
         hasShield = false;
         shieldeffect.SetActive(false);
     }
-
+    private void DeactivateSpeedUp()
+    {
+        hasspeedUp = false;
+        Time.fixedDeltaTime = 0.09f;
+        speedUp.SetActive(false);
+    }
+    private void DeactivateScoreBoost()
+    {
+        hasScoreboost = false;
+        scoreBoost.SetActive(false);
+    }
 }

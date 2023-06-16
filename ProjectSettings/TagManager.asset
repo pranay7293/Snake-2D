@@ -6,11 +6,20 @@ TagManager:
   tags:
   - Obstacle
   - Shiled
+<<<<<<< Updated upstream
   - Food
   - Wall
   - FoodGrid
   - SnakeGrid
   - Shield
+=======
+  - Shield
+  - GreenFood
+  - RedFood
+  - GridArea
+  - ScoreBoost
+  - SpeedUp
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
