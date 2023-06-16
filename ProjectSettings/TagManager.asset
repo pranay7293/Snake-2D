@@ -3,23 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Obstacle
-  - Shiled
-<<<<<<< Updated upstream
-  - Food
-  - Wall
-  - FoodGrid
-  - SnakeGrid
-  - Shield
-=======
-  - Shield
-  - GreenFood
-  - RedFood
-  - GridArea
-  - ScoreBoost
-  - SpeedUp
->>>>>>> Stashed changes
+  tags: []
   layers:
   - Default
   - TransparentFX

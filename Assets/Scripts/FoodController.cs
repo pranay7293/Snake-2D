@@ -1,37 +1,54 @@
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class FoodController : MonoBehaviour
 {
-    public BoxCollider2D FoodgridArea;
-    public GameObject ShieldEnable;
+    [SerializeField]
+    private FoodType foodtype;
+
+    private BoxCollider2D gridArea;
+    Bounds bounds;
+
+    [SerializeField]
+    private float activeTime;
 
     private void Start()
     {
-        RandomizePosition();
+        gridArea = GameObject.FindGameObjectWithTag("GridArea").GetComponent<BoxCollider2D>();
+        bounds = gridArea.bounds;
     }
-
-    private void RandomizePosition()
+    private void OnEnable()
     {
-        Bounds bounds = this.FoodgridArea.bounds;
-
+        StartCoroutine(FoodLifetime());
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<SnakeController>() != null)
+        {
+            RandomizedPosition();
+        }
+    }
+    private void RandomizedPosition()
+    {
         float x = Random.Range(bounds.min.x, bounds.max.x);
         float y = Random.Range(bounds.min.y, bounds.max.y);
 
-        this.transform.position = new Vector3(Mathf.Round(x), Mathf.Round(y), 0.0f);
+        transform.position = new Vector3(Mathf.Round(x), Mathf.Round(y), 0.0f);
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    IEnumerator FoodLifetime()
     {
-        if (collision.tag == "Player")
-        {
-            RandomizePosition();
-            Invoke("ShieldActive", 2f);
-        }
+        yield return new WaitForSeconds(activeTime);
+        Destroy(gameObject);
     }
-
-    private void ShieldActive()
+    public FoodType GetFoodType()
     {
-        ShieldEnable.SetActive(true);
+        return foodtype;
     }
+}
+
+//Enum for food type
+public enum FoodType
+{
+    MassGainer,
+    MassBurner
 }
