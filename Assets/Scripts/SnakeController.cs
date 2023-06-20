@@ -14,26 +14,30 @@ public class SnakeController : MonoBehaviour
 {
     [SerializeField]
     public SnakePlayer player;
-
     [SerializeField]
     private int initialSize;
-
     [SerializeField]
-    private TextMeshProUGUI scoreText;
+    private float speed;
+    [SerializeField]
+    private TextMeshProUGUI scoreTextSnake1;
+    [SerializeField]
+    private TextMeshProUGUI scoreTextSnake2;
+    [SerializeField]
+    private ScoreController scoreController;
 
-    public ScoreController scoreController;
-
-    public bool isPaused = false;
-
-
+    public GameObject floatingTextPrefab;
     public GameObject shieldeffect;
     public GameObject speedUp;
     public GameObject scoreBoost;
+
+    public bool isgamePaused = false;
     private bool hasShield;
     private bool hasspeedUp;
     private bool hasScoreboost;
+
     private float PowerAcivated = 3f;
-    private int score = 0;
+    private int Snake1score = 0;
+    private int Snake2score = 0;
 
     public BoxCollider2D gridArea;
     private Bounds bounds;
@@ -41,10 +45,8 @@ public class SnakeController : MonoBehaviour
     private Vector2Int direction1 = Vector2Int.right;
     private Vector2Int direction2 = Vector2Int.left;
 
-
     private List<Transform> _segments;
     public Transform segmentPrefab;
-    
 
     private void Start()
     {
@@ -61,7 +63,7 @@ public class SnakeController : MonoBehaviour
 
     private void Update()
     {
-        if (!isPaused)
+        if (!isgamePaused)
         {
             SnakeMovement();
             MovementChange();
@@ -70,18 +72,18 @@ public class SnakeController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isPaused)
+        if (!isgamePaused)
         {
+
             if(player == SnakePlayer.Snake1)
             {
                 for (int i = _segments.Count - 1; i > 0; i--)
                 {
                     _segments[i].position = _segments[i - 1].position;
                 }
-
                 this.transform.position = new Vector3(
-                    this.transform.position.x + direction1.x,
-                    this.transform.position.y + direction1.y,
+                    Mathf.Round(this.transform.position.x + direction1.x),
+                    Mathf.Round(this.transform.position.y + direction1.y),
                     0.0f);
             }
             else if (player == SnakePlayer.Snake2)
@@ -90,33 +92,34 @@ public class SnakeController : MonoBehaviour
                 {
                     _segments[i].position = _segments[i - 1].position;
                 }
-
                 this.transform.position = new Vector3(
-                    this.transform.position.x + direction2.x,
-                    this.transform.position.y + direction2.y,
+                    Mathf.Round(this.transform.position.x + direction2.x),
+                    Mathf.Round(this.transform.position.y + direction2.y),
                     0.0f);
             }
-
         }
     }    
 
     private void MovementChange()
     {
-        if (transform.position.x > bounds.max.x)
+        float roundedX = (float)Math.Round(transform.position.x);
+        float roundedY = (float)Math.Round(transform.position.y);
+
+        if (roundedX > bounds.max.x)
         {
-            transform.position = new Vector3(bounds.min.x, transform.position.y, 0.0f);
+            transform.position = new Vector3((float)Math.Round(bounds.min.x), roundedY, 0.0f);
         }
-        else if (transform.position.x < bounds.min.x)
+        else if (roundedX < bounds.min.x)
         {
-            transform.position = new Vector3(bounds.max.x, transform.position.y, 0.0f);
+            transform.position = new Vector3((float)Math.Round(bounds.max.x), roundedY, 0.0f);
         }
-        else if (transform.position.y < bounds.min.y)
+        else if (roundedY < bounds.min.y)
         {
-            transform.position = new Vector3(transform.position.x, bounds.max.y, 0.0f);
+            transform.position = new Vector3(roundedX, (float)Math.Round(bounds.max.y), 0.0f);
         }
-        else if (transform.position.y > bounds.max.y)
+        else if (roundedY > bounds.max.y)
         {
-            transform.position = new Vector3(transform.position.x, bounds.min.y, 0.0f);
+            transform.position = new Vector3(roundedX, (float)Math.Round(bounds.min.y), 0.0f);
         }
     }
 
@@ -144,7 +147,7 @@ public class SnakeController : MonoBehaviour
             scoreBoost.transform.rotation = Quaternion.Euler(0, 0, GetRotationAngleFromDirection(direction1));
             speedUp.transform.rotation = Quaternion.Euler(0, 0, GetRotationAngleFromDirection(direction1));
         }
-        else if(player == SnakePlayer.Snake2)
+        else if (player == SnakePlayer.Snake2)
         {
             if (Input.GetKeyDown(KeyCode.A) && direction2.x != 1)
             {
@@ -184,81 +187,176 @@ public class SnakeController : MonoBehaviour
         }
         else if (directionx == Vector2Int.left)
         {
-            return 180f; // 180 degrees rotation
+            return 0; // 180 degrees rotation
         }
         return 0f;
     }
 
-    private void UpdateScore(bool isGreenFood)
+    private void UpdateScore(bool isGreenFood, SnakePlayer player)
     {
         int scoreChange = isGreenFood ? 10 : -10;
 
         if (hasScoreboost)
         {
             scoreChange *= 2;
-        }        
-            score += scoreChange;
-
+        }
+        if (player == SnakePlayer.Snake1)
+        {
+            Snake1score += scoreChange; // Update Snake 1 score
+        }
+        else if (player == SnakePlayer.Snake2)
+        {
+            Snake2score += scoreChange; // Update Snake 2 score
+        }
         UpdateScoreUI();
     }
     private void UpdateScoreUI()
     {
-        scoreText.text = "Score: " + score.ToString();       
+        if(player == SnakePlayer.Snake1)
+        {
+            scoreTextSnake1.text = "Score: " + Snake1score.ToString();
+        }
+        else if(player == SnakePlayer.Snake2)
+        {
+            scoreTextSnake2.text = "Score: " + Snake2score.ToString();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isPaused)
+        if (!isgamePaused)
         {
 
             if (collision.CompareTag("GreenFood"))
             {
-                UpdateScore(true);
+                if (player == SnakePlayer.Snake1)
+                {
+                    SoundManager.Instance.Play(Sounds.GreenFood);
+                    UpdateScore(true, SnakePlayer.Snake1);
+                    DisplayFloatingText("Snake1 player eat Green Food", new Vector3(-12, -12, 0));
+
+                }
+                else if (player == SnakePlayer.Snake2)
+                {
+                    SoundManager.Instance.Play(Sounds.GreenFood);
+                    UpdateScore(true, SnakePlayer.Snake2);
+                    DisplayFloatingText("Snake2 player eat Green Food", new Vector3(-12, -12, 0));
+
+                }
                 Grow();
             }
             else if (collision.CompareTag("RedFood"))
             {
-                UpdateScore(false);
+                if (player == SnakePlayer.Snake1)
+                {
+                    SoundManager.Instance.Play(Sounds.RedFood);
+                    UpdateScore(false, SnakePlayer.Snake1);
+                    DisplayFloatingText("Snake1 player eat Red Food", new Vector3(-12, -13, 0));
+
+                }
+                else if (player == SnakePlayer.Snake2)
+                {
+                    SoundManager.Instance.Play(Sounds.RedFood);
+                    UpdateScore(false, SnakePlayer.Snake2);
+                    DisplayFloatingText("Snake2 player eat Red Food", new Vector3(-12, -13, 0));
+                }
                 Shrink();
             }
             else if (collision.CompareTag("Shield"))
             {
-                ActivateShield();
+                if (hasShield)
+                {
+                    SoundManager.Instance.Play(Sounds.Error);
+                    DisplayFloatingText("Snake player already has a shield", new Vector3(12, -12, 0));
+                }
+                else if (hasspeedUp || hasScoreboost)
+                {
+                    SoundManager.Instance.Play(Sounds.Error);
+                    DisplayFloatingText("Snake player already has an active power-up", new Vector3(12, -12, 0));
+                }
+                else
+                {
+                    ActivateShield();
+                    SoundManager.Instance.Play(Sounds.Shield);
+                    DisplayFloatingText("Snake player's Shield Power is activated", new Vector3(12, -12, 0));
+                }
             }
             else if (collision.CompareTag("SpeedUp"))
             {
-                ActivateSpeedUp();
+                if (hasspeedUp)
+                {
+                    SoundManager.Instance.Play(Sounds.Error);
+                    DisplayFloatingText("Snake player already has a speed boost", new Vector3(12, -13, 0));
+                }
+                else if (hasShield || hasScoreboost)
+                {
+                    SoundManager.Instance.Play(Sounds.Error);
+                    DisplayFloatingText("Snake player already has an active power-up", new Vector3(12, -13, 0));
+                }
+                else
+                {
+                    ActivateSpeedUp();
+                    SoundManager.Instance.Play(Sounds.SpeedUp);
+                    DisplayFloatingText("Snake player's SpeedUp Power is activated", new Vector3(12, -13, 0));
+
+                }
             }
             else if (collision.CompareTag("ScoreBoost"))
             {
-                ActivateScoreBoost();
+                if (hasScoreboost)
+                {
+                    SoundManager.Instance.Play(Sounds.Error);
+                    DisplayFloatingText("Snake player already has a score boost", new Vector3(12, -14, 0));
+                }
+                else if (hasShield || hasspeedUp)
+                {
+                    SoundManager.Instance.Play(Sounds.Error);
+                    DisplayFloatingText("Snake player already has an active power-up", new Vector3(12, -14, 0));
+                }
+                else
+                {
+                    ActivateScoreBoost();
+                    SoundManager.Instance.Play(Sounds.ScoreBoost);
+                    DisplayFloatingText("Snake player's ScoreBoost Power is activated", new Vector3(12, -14, 0));
+
+                }
             }
             else if (!hasShield && collision.CompareTag("Obstacle") && SceneManager.GetActiveScene().buildIndex == 1)
             {
-                scoreController.IncreaseScore(score);
-                scoreController.DecreaseLives();
-                score = 0;
-                scoreText.text = "Score: " + score.ToString();
+                scoreController.MaxScore(Snake1score, SnakePlayer.Snake1);
+                scoreController.DecreaseLives(SnakePlayer.Snake1);
+                SoundManager.Instance.Play(Sounds.SelfBite);
+                DisplayFloatingText("Oh God! Snake bites itself", new Vector3(0, -12, 0));
+                Snake1score = 0;
+                scoreTextSnake1.text = "Score: " + Snake1score.ToString();
             }
             else if (!hasShield && collision.CompareTag("Obstacle") && SceneManager.GetActiveScene().buildIndex == 2)
             {
-                isPaused = true;
-                Invoke(nameof(PlayerWin), 3f);
+                if (player == SnakePlayer.Snake1)
+                {
+                    scoreController.MaxScore(Snake1score, SnakePlayer.Snake1);
+                    scoreController.DecreaseLives(SnakePlayer.Snake2);
+                    SoundManager.Instance.Play(Sounds.SnakeBite);
+                    DisplayFloatingText("Hey! Snake 1 bites Snake 2", new Vector3(0, -12, 0));
+                    Snake2score = 0;
+                    scoreTextSnake1.text = "Score: " + Snake2score.ToString();
+                }
+                else if (player == SnakePlayer.Snake2)
+                {
+                    scoreController.MaxScore(Snake2score, SnakePlayer.Snake2);
+                    scoreController.DecreaseLives(SnakePlayer.Snake1);
+                    SoundManager.Instance.Play(Sounds.SnakeBite);
+                    DisplayFloatingText("Hey! Snake 2 bites Snake 1", new Vector3(0, -12, 0));
+                    Snake1score = 0;
+                    scoreTextSnake2.text = "Score: " + Snake1score.ToString();
+                }
             }
         }
-
     }
-    private void PlayerWin()
+    public void DisplayFloatingText(string text, Vector3 position)
     {
-        if (player == SnakePlayer.Snake1)
-        {
-            GameManager.Instance.SnakeWin(SnakePlayer.Snake2);
-        }
-        else if (player == SnakePlayer.Snake2)
-        {
-            GameManager.Instance.SnakeWin(SnakePlayer.Snake1);
-        }
-        
+        GameObject prefab = Instantiate(floatingTextPrefab, position, Quaternion.identity);
+        prefab.GetComponentInChildren<TextMesh>().text = text;
     }
 
     private void Grow()
@@ -275,26 +373,24 @@ public class SnakeController : MonoBehaviour
             Transform lastSegment = _segments[_segments.Count - 1];
             _segments.RemoveAt(_segments.Count - 1);
             Destroy(lastSegment.gameObject);
-
         }
     }
 
-    public void ResetState()
-    {
-    for(int i = 1; i < _segments.Count; i++)
+    public void ResetState(SnakePlayer player)
+    {        
+        for (int i = 1; i < _segments.Count; i++)
         {
             Destroy(_segments[i].gameObject);
         }
         _segments.Clear();
         _segments.Add(this.transform);
 
-        for(int i =1;i < this.initialSize; i++)
+        for (int i = 1; i < this.initialSize; i++)
         {
             _segments.Add(Instantiate(this.segmentPrefab));
         }
         this.transform.position = Vector3.zero;
     }
-
 
     private void ActivateShield()
     {
@@ -343,8 +439,9 @@ public class SnakeController : MonoBehaviour
     private void DeactivateSpeedUp()
     {
         hasspeedUp = false;
-        Time.fixedDeltaTime = 0.09f;
         speedUp.SetActive(false);
+        Time.fixedDeltaTime = 0.09f;
+
     }
     private void DeactivateScoreBoost()
     {
