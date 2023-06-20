@@ -8,8 +8,9 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private bool isPaused = false;
+    private bool isGamePaused = false;
     public SnakeController snakeController;
+    public ScoreController scoreController;
 
     public Button pauseButton;
     public Button continueButton;
@@ -19,30 +20,19 @@ public class GameManager : MonoBehaviour
     public Button exitButton3;
     public Button replyAgain;
 
-
     [SerializeField]
     private TextMeshProUGUI MaxscoreText;
     [SerializeField]
     private TextMeshProUGUI playerWinText;
+    [SerializeField]
+    private TextMeshProUGUI MaxscoreWin;
 
     public GameObject pauseDisplay;
     public GameObject gameOverDisplay;
     public GameObject SnakeWinDisplay;
 
-
-    public static GameManager Instance { get; private set; }
-
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
         pauseButton.onClick.AddListener(PauseGame);
         continueButton.onClick.AddListener(ResumeGame);
         exitButton.onClick.AddListener(ExittoLobby);
@@ -54,30 +44,35 @@ public class GameManager : MonoBehaviour
 
     private void ExittoLobby()
     {
+        SoundManager.Instance.Play(Sounds.ExitButtonClick);
         SceneManager.LoadScene(0);
-        isPaused = false;
+        isGamePaused = false;
         pauseDisplay.SetActive(false);
-        snakeController.isPaused = false;
+        snakeController.isgamePaused = false;
         Time.timeScale = 1f;
     }
 
     public void PauseGame()
     {
-        isPaused = true;
+        SoundManager.Instance.Play(Sounds.Pause);
+        isGamePaused = true;
         pauseDisplay.SetActive(true);
-        snakeController.isPaused = true;
+        snakeController.isgamePaused = true;
         Time.timeScale = 0f;
     }
 
     public void ResumeGame()
     {
-        isPaused = false;
+        SoundManager.Instance.Play(Sounds.PlayButtonClick);
+        isGamePaused = false;
         pauseDisplay.SetActive(false);
-        snakeController.isPaused = false;
+        snakeController.isgamePaused = false;
         Time.timeScale = 1f; 
     }
+
     private void RePlayMode()
     {
+        SoundManager.Instance.Play(Sounds.PlayButtonClick);
         Scene activeScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(activeScene.name);
     }
@@ -85,24 +80,25 @@ public class GameManager : MonoBehaviour
     public void GameOver(int Maxscore)
     {
         gameOverDisplay.SetActive(true);
-        snakeController.isPaused = true;
+        snakeController.isgamePaused = true;
         MaxscoreText.text = "Max Score: " + Maxscore.ToString();
     }
-    public void SnakeWin(SnakePlayer player)
+
+    public void SnakeWin(SnakePlayer player, int Maxscore)
     {
         SnakeWinDisplay.SetActive(true);
         if (player == SnakePlayer.Snake1)
         {
-            ChangeText("Snake 1 Wins!!");
+            playerWinText.text = "Snake 1 Wins!!";
+            MaxscoreWin.text = "Winner Max Score: " + Maxscore.ToString();
+            MaxscoreWin.color = new Color32(0x00, 0x00, 0xFF, 0xFF); 
+
         }
         else if(player == SnakePlayer.Snake2)
         {
-            ChangeText("Snake 2 Wins!!");
+            playerWinText.text = "Snake 2 Wins!!";
+            MaxscoreWin.text = "Winner Max Score: " + Maxscore.ToString();
+            MaxscoreWin.color = new Color32(0xFF, 0xA5, 0x00, 0xFF);
         }
-    }
-
-    private void ChangeText(string text)
-    {
-        playerWinText.text = text;
     }
 }

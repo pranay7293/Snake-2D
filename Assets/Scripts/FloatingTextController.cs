@@ -1,19 +1,13 @@
-﻿using System.Collections;
+﻿
 using UnityEngine;
 
 public class FloatingTextController : MonoBehaviour
 {
-    private Animator _animator;
-    private TextMesh _textMesh;
+    [SerializeField] private float secondToDestroy = 3f;
 
     private void Start()
     {
-        _animator = GetComponent<Animator>();
-        _textMesh = GetComponent<TextMesh>();
+        Destroy(gameObject, secondToDestroy);
     }
-    public void ShowText(string text)
-    {
-        _textMesh.text = text;
-        _animator.SetTrigger("ShowTrigger");
-    }
+
 }

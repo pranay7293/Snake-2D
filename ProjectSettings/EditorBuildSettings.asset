@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/SnakePlayer.unity
     guid: 3d4103f7cf4a90d47a3364511ca87ddd
   - enabled: 1
-    path: Assets/Scenes/Snake2Players.unity
+    path: Assets/Scenes/SnakePlayers2.unity
     guid: e6347106d58c7564991c3123b1714ec0
   m_configObjects: {}

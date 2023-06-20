@@ -10,6 +10,8 @@ public class LobbyController : MonoBehaviour
     public Button buttonPlay;
     public Button Oneplayer;
     public Button Twoplayers;
+    public Button BackButton;
+
 
     public GameObject LevelSelection;
 
@@ -19,21 +21,30 @@ public class LobbyController : MonoBehaviour
         buttonPlay.onClick.AddListener(LoadPlayModes);
         Oneplayer.onClick.AddListener(OnePlayerMode);
         Twoplayers.onClick.AddListener(TwoPlayersMode);
+        BackButton.onClick.AddListener(ExittoLobby);
 
     }
 
+    private void ExittoLobby()
+    {
+        SoundManager.Instance.Play(Sounds.ExitButtonClick);
+        SceneManager.LoadScene(0);      
+    }
     private void TwoPlayersMode()
     {
+        SoundManager.Instance.Play(Sounds.LevelButtonClick);
         SceneManager.LoadScene(2);
     }
 
     private void OnePlayerMode()
     {
+        SoundManager.Instance.Play(Sounds.LevelButtonClick);
         SceneManager.LoadScene(1);
     }
 
     private void LoadPlayModes()
     {
+        SoundManager.Instance.Play(Sounds.PlayButtonClick);
         LevelSelection.SetActive(true);            
     }  
 }

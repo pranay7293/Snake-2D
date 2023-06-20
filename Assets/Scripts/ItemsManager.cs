@@ -21,11 +21,11 @@ public class ItemsManager : MonoBehaviour
     private void Start()
     {
         bounds = gridArea.bounds;
-        InvokeRepeating(nameof(RandomSpawnMassGainer), 0.5f, 8f);
-        InvokeRepeating(nameof(RandomSpawnMassBurner), 2.5f, 6f);
-        InvokeRepeating(nameof(RandomSpawnShield), 6f, 3f);
-        InvokeRepeating(nameof(RandomSpawnSpeedUp), 8f, 3f);
-        InvokeRepeating(nameof(RandomSpawnScoreBoost), 10f, 3f);
+        InvokeRepeating(nameof(RandomSpawnMassGainer), 1f, 8f);
+        InvokeRepeating(nameof(RandomSpawnMassBurner), 3f, 6f);
+        InvokeRepeating(nameof(RandomSpawnShield), 6f, 4f);
+        InvokeRepeating(nameof(RandomSpawnSpeedUp), 8f, 4f);
+        InvokeRepeating(nameof(RandomSpawnScoreBoost), 10f, 4f);
     }
     private void RandomSpawnMassGainer()
     {
