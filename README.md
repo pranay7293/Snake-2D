@@ -112,7 +112,6 @@ Only one Power-up will be active at a time. Collecting another power-up while ha
 
 <img src="Assets/Sprites/ScoreBoost.png" alt="Alt Text" width="100" height="100">
 
-
 ### Snake One    
 
 ![Alt Text](Assets/Sprites/Snake1.png)
@@ -124,6 +123,11 @@ Only one Power-up will be active at a time. Collecting another power-up while ha
 ### Lobby
 
 ![image](https://github.com/pranay7293/Snake-2D/assets/119421688/30ef2c85-566a-4e81-a950-9e72f43b3fa7)
+
+### GamePlay Mode Selection
+
+![image](https://github.com/pranay7293/Snake-2D/assets/119421688/98eb9fef-f9c7-42a8-ab97-b8da6821f226)
+
 
 
 
