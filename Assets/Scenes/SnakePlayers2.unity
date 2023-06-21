@@ -35246,6 +35246,8 @@ MonoBehaviour:
   speedUp: {fileID: 2104571247}
   scoreBoost: {fileID: 762204218}
   isgamePaused: 0
+  Snake1score: 0
+  Snake2score: 0
   gridArea: {fileID: 1946819482}
   segmentPrefab: {fileID: 7482117466368177803, guid: 1150aecab299ed342a3ee78cee06658a, type: 3}
 --- !u!1 &1211155008
@@ -35738,7 +35740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.7058824}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.6862745}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -36504,6 +36506,8 @@ MonoBehaviour:
   speedUp: {fileID: 1024399874}
   scoreBoost: {fileID: 1279525990}
   isgamePaused: 0
+  Snake1score: 0
+  Snake2score: 0
   gridArea: {fileID: 1946819482}
   segmentPrefab: {fileID: 7482117466368177803, guid: 8a4240081a67ebf4fbb7a7c097caaeb2, type: 3}
 --- !u!61 &1760142555
