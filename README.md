@@ -92,8 +92,9 @@ Only one Power-up will be active at a time. Collecting another power-up while ha
 
    
 
-![GreenFood](Assets/Sprites/GreenFood.png)                 ![RedFood](Assets/Sprites/RedFood.png)                 
+![GreenFood](Assets/Sprites/GreenFood.png)                 ![RedFood](Assets/Sprites/RedFood.png)   
 
+<img src="Assets/Sprites/GreenFood.png" alt="Alt Text" width="200" height="300">
 
 
 
