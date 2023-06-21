@@ -15,20 +15,20 @@ This game has two types of food for Snakes. Foods will randomly spawn random loc
  2. RedFood: This will reduce the length of the Snake player.
 
 ## Health System: 
- 1. Single Player Mode:
-     Snake Player will have 3 lives.
-     It will lose one life when it's biting itself.
-     It will respawn in the game and its score will reset.
-     After losing all three lives, the game will be over.
-     Its max score among three lives will be displayed as Winner Max Score on Game Over Screen.
-     If the max score reaches the set Target Score, the Game Win will appear with Winner's Max Score.
- 2. Two-Player Mode:
-     Each Snake Player will have 3 lives.
-     It will lose one life when it gets bitten by the other Snake and bites itself.
-     The Snake that gets bitten score will reset to zero, and Snake which bites score remains the same. 
-     The Snake that gets bitten will remain the same length and Snake which bites will reset its length.
-     The snake that bites should get benefited from its length as the score remains the same.
-     The snake which lost all 3 lives will lose and the other that bites thrice will win. 
+ ### 1. Single Player Mode:
+ - Snake Player will have 3 lives.
+ - It will lose one life when it's biting itself.
+ - It will respawn in the game and its score will reset.
+ - After losing all three lives, the game will be over.
+ - Its max score among three lives will be displayed as Winner Max Score on Game Over Screen.
+ - If the max score reaches the set Target Score, the Game Win will appear with Winner's Max Score.
+ ### 2. Two-Player Mode:
+ - Each Snake Player will have 3 lives.
+ - It will lose one life when it gets bitten by the other Snake and bites itself.
+ - The Snake that gets bitten score will reset to zero, and Snake which bites score remains the same.
+ - The Snake that gets bitten will remain the same length and Snake which bites will reset its length.
+ - The snake that bites should get benefited from its length as the score remains the same.
+ - The snake which lost all 3 lives will lose and the other that bites thrice will win. 
 
 ### Score: 
  1. GreenFood will increase the Snake player's score.
@@ -49,7 +49,7 @@ Lobby:
  - Music Icon: Will enable and disable Background music.
  - Speaker Icons: Will enable and disable Game Sounds. 
 
-1 Player GamePlay: 
+### 1 Player GamePlay: 
 - Will have Score, Lives, Floating Text elements, and Pause buttons. Movement by: ⬆️ ⬇️ ⬅️➡️
 - Pause: will affect gameplay to pause and the player will get options to Resume and Exit.
 - Resume: will resume the gameplay from where it is Paused.
