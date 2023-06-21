@@ -119,7 +119,7 @@ Only one Power-up will be active at a time. Collecting another power-up while ha
 
 ### Snake Two    
 
-![Alt Text](Assets/Sprites/Snake1.png)
+![Alt Text](Assets/Sprites/Snake2.png)
 
 
 
