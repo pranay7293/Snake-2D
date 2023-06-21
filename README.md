@@ -25,20 +25,49 @@ Health System:
  2. Two-Player Mode:
      Each Snake Player will have 3 lives.
      It will lose one life when it gets bitten by the other Snake and bites itself.
-     The Snake that gets bitten will remain the same length and
+     The Snake that gets bitten score will reset to zero, and Snake which bites score remains the same. 
+     The Snake that gets bitten will remain the same length and Snake which bites will reset its length.
+     The snake that bites should get benefited from its length as the score remains the same.
+     The snake which lost all 3 lives will lose and the other that bites thrice will win. 
 
- 
-
- 4. 
 Score: 
  1. GreenFood will increase the Snake player's score.
  2. RedFood will decrease the Snake player's score.
 
-In Single Player mode, the player's score will reset for 
+Death and Win Condition: 
+ It's simple for both GamePlay modes the Snake that losses all 3 lives will die.
+  1. Single Player Mode: If any Max Score reaches Set Target among 3 lives. It will win or it's Game Over.
+  2. Two-Player Mode: The snake that remains with lives will win. 
+
+Menu and UI options: 
+
+Lobby: Play: Will lead to GamePlay mode selection. 
+       1 Player: Will load to Single Play (one snake) GamePlay mode. 
+       2 Players: Will load to Two Players (two snakes) GamePlay mode.
+       Back: will get back to the Lobby page again. 
+       Music Icon: Will enable and disable Background music.
+       Speaker Icons: Will enable and disable Game Sounds. 
+
+ 1 Player GamePlay: Will have Score, Lives, Floating Text elements, and Pause buttons. 
+   Pause: will affect gameplay to pause and the player will get options to Resume and Exit. 
+   Resume: will resume the gameplay from where it is Paused. 
+   Exit: will load the Lobby page. 
+   On GameOver: Player will get Reply and Exit options. 
+   Reply: Replay the same mode. 
+   Exit: will load the Lobby page. 
+   On You Win: Player will get Replyagain and Exit options.
+   Replyagain: Replay the same mode. 
+   Exit: will load the Lobby page.
 
 
 
-Death Condition: 
- 1. Single Player: 
+
+
+
+
+       
+
+
+
 
 
