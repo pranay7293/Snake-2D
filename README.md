@@ -41,7 +41,7 @@ This game has two types of food for Snakes. Foods will randomly spawn random loc
 
 ## Menu and UI options: 
 
-Lobby: 
+#### Lobby: 
  - Play: This will lead to GamePlay mode selection.
  - 1 Player: Will load to Single Play (one snake) GamePlay mode.
  - 2 Players: Will load to Two Players (two snakes) GamePlay mode.
@@ -49,7 +49,7 @@ Lobby:
  - Music Icon: Will enable and disable Background music.
  - Speaker Icons: Will enable and disable Game Sounds. 
 
-### 1 Player GamePlay: 
+#### 1 Player GamePlay: 
 - Will have Score, Lives, Floating Text elements, and Pause buttons. Movement by: ⬆️ ⬇️ ⬅️➡️
 - Pause: will affect gameplay to pause and the player will get options to Resume and Exit.
 - Resume: will resume the gameplay from where it is Paused.
@@ -61,15 +61,16 @@ Lobby:
 - Replyagain: Replay the same mode.
 - Exit: will load the Lobby page.
    
-   2 Players GamePlay: Will have Score, Lives, Floating Text elements, and Pause buttons. 
-   Player1: Movement by: ⬆️ ⬇️ ⬅️➡️
-   Player2: Movement by: W A S D
-   Pause: will affect gameplay to pause and the player will get options to Resume and Exit. 
-   Resume: will resume the gameplay from where it is Paused. 
-   Exit: will load the Lobby page.
-   On YouWin: Player will get Replyagain and Exit options. One Player should win all the time.
-   Replyagain: Replay the same mode. 
-   Exit: will load the Lobby page.
+#### 2 Players GamePlay: 
+- Will have Score, Lives, Floating Text elements, and Pause buttons.
+- Player1: Movement by: ⬆️ ⬇️ ⬅️➡️
+- Player2: Movement by: W A S D
+- Pause: will affect gameplay to pause and the player will get options to Resume and Exit.
+- Resume: will resume the gameplay from where it is Paused.
+- Exit: will load the Lobby page.
+- On YouWin: Player will get Replyagain and Exit options. One Player should win all the time.
+- Replyagain: Replay the same mode.
+- Exit: will load the Lobby page.
 
    
 
