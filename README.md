@@ -115,12 +115,11 @@ Only one Power-up will be active at a time. Collecting another power-up while ha
 
 ### Snake One    
 
-<img src="Assets/Sprites/Snake1.png" alt="Alt Text" width="100" height="100">
+![Alt Text](Assets/Sprites/Snake1.png)
 
 ### Snake Two    
 
-<img src="Assets/Sprites/Snake2.png" alt="Alt Text" width="100" height="100">
-
+![Alt Text](Assets/Sprites/Snake1.png)
 
 
 
