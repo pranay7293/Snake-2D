@@ -13,11 +13,7 @@ public enum SnakePlayer
 public class SnakeController : MonoBehaviour
 {
     [SerializeField]
-    public SnakePlayer player;
-    [SerializeField]
-    private int initialSize;
-    [SerializeField]
-    private float speed;
+    public SnakePlayer player;  
     [SerializeField]
     private TextMeshProUGUI scoreTextSnake1;
     [SerializeField]
@@ -36,16 +32,17 @@ public class SnakeController : MonoBehaviour
     private bool hasScoreboost;
 
     private float PowerAcivated = 3f;
-    private int Snake1score = 0;
-    private int Snake2score = 0;
-
+    public int Snake1score = 0;
+    public int Snake2score = 0;
     public BoxCollider2D gridArea;
     private Bounds bounds;
 
     private Vector2Int direction1 = Vector2Int.right;
     private Vector2Int direction2 = Vector2Int.left;
 
+
     private List<Transform> _segments;
+    private int initialSize = 4;
     public Transform segmentPrefab;
 
     private void Start()
@@ -74,31 +71,34 @@ public class SnakeController : MonoBehaviour
     {
         if (!isgamePaused)
         {
+            if (!isgamePaused)
+            {
+                if (player == SnakePlayer.Snake1)
+                {
+                    for (int i = _segments.Count - 1; i > 0; i--)
+                    {
+                        _segments[i].position = _segments[i - 1].position;
+                    }
+                    this.transform.position = new Vector3(
+                        Mathf.Round(this.transform.position.x + direction1.x),
+                        Mathf.Round(this.transform.position.y + direction1.y),
+                        0.0f);
+                }
+                else if (player == SnakePlayer.Snake2)
+                {
+                    for (int i = _segments.Count - 1; i > 0; i--)
+                    {
+                        _segments[i].position = _segments[i - 1].position;
+                    }
+                    this.transform.position = new Vector3(
+                        Mathf.Round(this.transform.position.x + direction2.x),
+                        Mathf.Round(this.transform.position.y + direction2.y),
+                        0.0f);
 
-            if(player == SnakePlayer.Snake1)
-            {
-                for (int i = _segments.Count - 1; i > 0; i--)
-                {
-                    _segments[i].position = _segments[i - 1].position;
                 }
-                this.transform.position = new Vector3(
-                    Mathf.Round(this.transform.position.x + direction1.x),
-                    Mathf.Round(this.transform.position.y + direction1.y),
-                    0.0f);
-            }
-            else if (player == SnakePlayer.Snake2)
-            {
-                for (int i = _segments.Count - 1; i > 0; i--)
-                {
-                    _segments[i].position = _segments[i - 1].position;
-                }
-                this.transform.position = new Vector3(
-                    Mathf.Round(this.transform.position.x + direction2.x),
-                    Mathf.Round(this.transform.position.y + direction2.y),
-                    0.0f);
             }
         }
-    }    
+    }
 
     private void MovementChange()
     {
@@ -127,19 +127,19 @@ public class SnakeController : MonoBehaviour
     {
         if (player == SnakePlayer.Snake1)
         {
-            if (Input.GetKeyDown(KeyCode.LeftArrow) && direction1.x != 1)
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && (direction1.x != 1) && (direction1.y == 1 || direction1.y == -1))
             {
                 direction1 = Vector2Int.left;
             }
-            else if (Input.GetKeyDown(KeyCode.RightArrow) && direction1.x != -1)
+            else if (Input.GetKeyDown(KeyCode.RightArrow) && (direction1.x != -1) && (direction1.y == 1 || direction1.y == -1))
             {
                 direction1 = Vector2Int.right;
             }
-            else if (Input.GetKeyDown(KeyCode.UpArrow) && direction1.y != -1)
+            else if (Input.GetKeyDown(KeyCode.UpArrow) && (direction1.y != -1) && (direction1.x == 1 || direction1.x == -1))
             {
                 direction1 = Vector2Int.up;
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow) && direction1.y != 1)
+            else if (Input.GetKeyDown(KeyCode.DownArrow) && (direction1.y != 1) && (direction1.x == 1 || direction1.x == -1))
             {
                 direction1 = Vector2Int.down;
             }
@@ -147,28 +147,30 @@ public class SnakeController : MonoBehaviour
             scoreBoost.transform.rotation = Quaternion.Euler(0, 0, GetRotationAngleFromDirection(direction1));
             speedUp.transform.rotation = Quaternion.Euler(0, 0, GetRotationAngleFromDirection(direction1));
         }
+
         else if (player == SnakePlayer.Snake2)
         {
-            if (Input.GetKeyDown(KeyCode.A) && direction2.x != 1)
+            if (Input.GetKeyDown(KeyCode.A) && (direction2.x != 1) && (direction2.y == 1 || direction2.y == -1))
             {
                 direction2 = Vector2Int.left;
             }
-            else if (Input.GetKeyDown(KeyCode.D) && direction2.x != -1)
+            else if (Input.GetKeyDown(KeyCode.D) && (direction2.x != -1) && (direction2.y == 1 || direction2.y == -1))
             {
                 direction2 = Vector2Int.right;
             }
-            else if (Input.GetKeyDown(KeyCode.W) && direction2.y != -1)
+            else if (Input.GetKeyDown(KeyCode.W) && (direction2.y != -1) && (direction2.x == 1 || direction2.x == -1))
             {
                 direction2 = Vector2Int.up;
             }
-            else if (Input.GetKeyDown(KeyCode.S) && direction2.y != 1)
+            else if (Input.GetKeyDown(KeyCode.S) && (direction2.y != 1) && (direction2.x == 1 || direction2.x == -1))
             {
                 direction2 = Vector2Int.down;
             }
             shieldeffect.transform.rotation = Quaternion.Euler(0, 0, GetRotationAngleFromDirection(direction2));
             scoreBoost.transform.rotation = Quaternion.Euler(0, 0, GetRotationAngleFromDirection(direction2));
             speedUp.transform.rotation = Quaternion.Euler(0, 0, GetRotationAngleFromDirection(direction2));
-        }
+        }         
+        
     }
 
     private float GetRotationAngleFromDirection(Vector2Int directionx)
@@ -187,40 +189,11 @@ public class SnakeController : MonoBehaviour
         }
         else if (directionx == Vector2Int.left)
         {
-            return 0; // 180 degrees rotation
+            return 180f; // 180 degrees rotation
         }
         return 0f;
     }
 
-    private void UpdateScore(bool isGreenFood, SnakePlayer player)
-    {
-        int scoreChange = isGreenFood ? 10 : -10;
-
-        if (hasScoreboost)
-        {
-            scoreChange *= 2;
-        }
-        if (player == SnakePlayer.Snake1)
-        {
-            Snake1score += scoreChange; // Update Snake 1 score
-        }
-        else if (player == SnakePlayer.Snake2)
-        {
-            Snake2score += scoreChange; // Update Snake 2 score
-        }
-        UpdateScoreUI();
-    }
-    private void UpdateScoreUI()
-    {
-        if(player == SnakePlayer.Snake1)
-        {
-            scoreTextSnake1.text = "Score: " + Snake1score.ToString();
-        }
-        else if(player == SnakePlayer.Snake2)
-        {
-            scoreTextSnake2.text = "Score: " + Snake2score.ToString();
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -231,53 +204,56 @@ public class SnakeController : MonoBehaviour
             {
                 if (player == SnakePlayer.Snake1)
                 {
-                    SoundManager.Instance.Play(Sounds.GreenFood);
+                    Grow();
+                    SoundManager.Instance.PlaySound(Sounds.GreenFood);
                     UpdateScore(true, SnakePlayer.Snake1);
                     DisplayFloatingText("Snake1 player eat Green Food", new Vector3(-12, -12, 0));
 
                 }
                 else if (player == SnakePlayer.Snake2)
                 {
-                    SoundManager.Instance.Play(Sounds.GreenFood);
+                    Grow();
+                    SoundManager.Instance.PlaySound(Sounds.GreenFood);
                     UpdateScore(true, SnakePlayer.Snake2);
                     DisplayFloatingText("Snake2 player eat Green Food", new Vector3(-12, -12, 0));
 
                 }
-                Grow();
+               
             }
             else if (collision.CompareTag("RedFood"))
             {
                 if (player == SnakePlayer.Snake1)
                 {
-                    SoundManager.Instance.Play(Sounds.RedFood);
+                    Shrink();
+                    SoundManager.Instance.PlaySound(Sounds.RedFood);
                     UpdateScore(false, SnakePlayer.Snake1);
                     DisplayFloatingText("Snake1 player eat Red Food", new Vector3(-12, -13, 0));
 
                 }
                 else if (player == SnakePlayer.Snake2)
                 {
-                    SoundManager.Instance.Play(Sounds.RedFood);
+                    Shrink();
+                    SoundManager.Instance.PlaySound(Sounds.RedFood);
                     UpdateScore(false, SnakePlayer.Snake2);
                     DisplayFloatingText("Snake2 player eat Red Food", new Vector3(-12, -13, 0));
                 }
-                Shrink();
             }
             else if (collision.CompareTag("Shield"))
             {
                 if (hasShield)
                 {
-                    SoundManager.Instance.Play(Sounds.Error);
+                    SoundManager.Instance.PlaySound(Sounds.Error);
                     DisplayFloatingText("Snake player already has a shield", new Vector3(12, -12, 0));
                 }
                 else if (hasspeedUp || hasScoreboost)
                 {
-                    SoundManager.Instance.Play(Sounds.Error);
+                    SoundManager.Instance.PlaySound(Sounds.Error);
                     DisplayFloatingText("Snake player already has an active power-up", new Vector3(12, -12, 0));
                 }
                 else
                 {
                     ActivateShield();
-                    SoundManager.Instance.Play(Sounds.Shield);
+                    SoundManager.Instance.PlaySound(Sounds.Shield);
                     DisplayFloatingText("Snake player's Shield Power is activated", new Vector3(12, -12, 0));
                 }
             }
@@ -285,18 +261,18 @@ public class SnakeController : MonoBehaviour
             {
                 if (hasspeedUp)
                 {
-                    SoundManager.Instance.Play(Sounds.Error);
+                    SoundManager.Instance.PlaySound(Sounds.Error);
                     DisplayFloatingText("Snake player already has a speed boost", new Vector3(12, -13, 0));
                 }
                 else if (hasShield || hasScoreboost)
                 {
-                    SoundManager.Instance.Play(Sounds.Error);
+                    SoundManager.Instance.PlaySound(Sounds.Error);
                     DisplayFloatingText("Snake player already has an active power-up", new Vector3(12, -13, 0));
                 }
                 else
                 {
                     ActivateSpeedUp();
-                    SoundManager.Instance.Play(Sounds.SpeedUp);
+                    SoundManager.Instance.PlaySound(Sounds.SpeedUp);
                     DisplayFloatingText("Snake player's SpeedUp Power is activated", new Vector3(12, -13, 0));
 
                 }
@@ -305,18 +281,18 @@ public class SnakeController : MonoBehaviour
             {
                 if (hasScoreboost)
                 {
-                    SoundManager.Instance.Play(Sounds.Error);
+                    SoundManager.Instance.PlaySound(Sounds.Error);
                     DisplayFloatingText("Snake player already has a score boost", new Vector3(12, -14, 0));
                 }
                 else if (hasShield || hasspeedUp)
                 {
-                    SoundManager.Instance.Play(Sounds.Error);
+                    SoundManager.Instance.PlaySound(Sounds.Error);
                     DisplayFloatingText("Snake player already has an active power-up", new Vector3(12, -14, 0));
                 }
                 else
                 {
                     ActivateScoreBoost();
-                    SoundManager.Instance.Play(Sounds.ScoreBoost);
+                    SoundManager.Instance.PlaySound(Sounds.ScoreBoost);
                     DisplayFloatingText("Snake player's ScoreBoost Power is activated", new Vector3(12, -14, 0));
 
                 }
@@ -325,30 +301,29 @@ public class SnakeController : MonoBehaviour
             {
                 scoreController.MaxScore(Snake1score, SnakePlayer.Snake1);
                 scoreController.DecreaseLives(SnakePlayer.Snake1);
-                SoundManager.Instance.Play(Sounds.SelfBite);
+                SoundManager.Instance.PlaySound(Sounds.SelfBite);
                 DisplayFloatingText("Oh God! Snake bites itself", new Vector3(0, -12, 0));
                 Snake1score = 0;
-                scoreTextSnake1.text = "Score: " + Snake1score.ToString();
+                UpdateScoreUI();
             }
             else if (!hasShield && collision.CompareTag("Obstacle") && SceneManager.GetActiveScene().buildIndex == 2)
-            {
+            {                
                 if (player == SnakePlayer.Snake1)
                 {
+                    
                     scoreController.MaxScore(Snake1score, SnakePlayer.Snake1);
                     scoreController.DecreaseLives(SnakePlayer.Snake2);
-                    SoundManager.Instance.Play(Sounds.SnakeBite);
+                    SoundManager.Instance.PlaySound(Sounds.SnakeBite);
                     DisplayFloatingText("Hey! Snake 1 bites Snake 2", new Vector3(0, -12, 0));
-                    Snake2score = 0;
-                    scoreTextSnake1.text = "Score: " + Snake2score.ToString();
+                    StartCoroutine(DelayedResetState(3.0f));                    
                 }
                 else if (player == SnakePlayer.Snake2)
                 {
                     scoreController.MaxScore(Snake2score, SnakePlayer.Snake2);
                     scoreController.DecreaseLives(SnakePlayer.Snake1);
-                    SoundManager.Instance.Play(Sounds.SnakeBite);
+                    SoundManager.Instance.PlaySound(Sounds.SnakeBite);
                     DisplayFloatingText("Hey! Snake 2 bites Snake 1", new Vector3(0, -12, 0));
-                    Snake1score = 0;
-                    scoreTextSnake2.text = "Score: " + Snake1score.ToString();
+                    StartCoroutine(DelayedResetState(3.0f));                    
                 }
             }
         }
@@ -376,20 +351,79 @@ public class SnakeController : MonoBehaviour
         }
     }
 
-    public void ResetState(SnakePlayer player)
-    {        
+    IEnumerator DelayedResetState(float delayInSeconds)
+    {
+        isgamePaused = true;
+        yield return new WaitForSeconds(delayInSeconds);
+        ResetState();
+        isgamePaused = false;
+        SoundManager.Instance.PlaySound(Sounds.Respawn);
+    }
+
+    public void ResetState()
+    {
+        if (scoreController.snake1Lives > 0 && scoreController.snake2Lives > 0)
+        {
+            if (player == SnakePlayer.Snake1)
+            {
+                ResetSnake();
+                new Vector3(0, 2, 0);
+                direction1 = Vector2Int.right;
+            }
+            else if (player == SnakePlayer.Snake2)
+            {
+                ResetSnake();
+                new Vector3(0, -2, 0);
+                direction2 = Vector2Int.left;
+            }
+        }       
+    }
+    public void ResetSnake()
+    {
         for (int i = 1; i < _segments.Count; i++)
         {
             Destroy(_segments[i].gameObject);
         }
         _segments.Clear();
-        _segments.Add(this.transform);
+        _segments.Add(transform);
 
-        for (int i = 1; i < this.initialSize; i++)
+        for (int i = 1; i < initialSize; i++)
         {
-            _segments.Add(Instantiate(this.segmentPrefab));
+            Transform segment = Instantiate(segmentPrefab);
+            _segments.Add(segment);
         }
-        this.transform.position = Vector3.zero;
+        transform.position = Vector3.zero;
+    }
+
+
+    private void UpdateScore(bool isGreenFood, SnakePlayer player)
+    {
+        int scoreChange = isGreenFood ? 10 : -10;
+
+        if (hasScoreboost)
+        {
+            scoreChange *= 2;
+        }
+        if (player == SnakePlayer.Snake1)
+        {
+            Snake1score += scoreChange; // Update Snake 1 score
+        }
+        else if (player == SnakePlayer.Snake2)
+        {
+            Snake2score += scoreChange; // Update Snake 2 score
+        }
+        UpdateScoreUI();
+    }
+    public void UpdateScoreUI()
+    {
+        if (player == SnakePlayer.Snake1)
+        {
+            scoreTextSnake1.text = "Score: " + Snake1score.ToString();
+        }
+        else if (player == SnakePlayer.Snake2)
+        {
+            scoreTextSnake2.text = "Score: " + Snake2score.ToString();
+        }
     }
 
     private void ActivateShield()

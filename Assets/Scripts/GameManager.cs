@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
 
     private void ExittoLobby()
     {
-        SoundManager.Instance.Play(Sounds.ExitButtonClick);
+        SoundManager.Instance.PlaySound(Sounds.ExitButtonClick);
         SceneManager.LoadScene(0);
         isGamePaused = false;
         pauseDisplay.SetActive(false);
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        SoundManager.Instance.Play(Sounds.Pause);
+        SoundManager.Instance.PlaySound(Sounds.Pause);
         isGamePaused = true;
         pauseDisplay.SetActive(true);
         snakeController.isgamePaused = true;
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        SoundManager.Instance.Play(Sounds.PlayButtonClick);
+        SoundManager.Instance.PlaySound(Sounds.PlayButtonClick);
         isGamePaused = false;
         pauseDisplay.SetActive(false);
         snakeController.isgamePaused = false;
@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
 
     private void RePlayMode()
     {
-        SoundManager.Instance.Play(Sounds.PlayButtonClick);
+        SoundManager.Instance.PlaySound(Sounds.PlayButtonClick);
         Scene activeScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(activeScene.name);
     }
@@ -80,7 +80,6 @@ public class GameManager : MonoBehaviour
     public void GameOver(int Maxscore)
     {
         gameOverDisplay.SetActive(true);
-        snakeController.isgamePaused = true;
         MaxscoreText.text = "Max Score: " + Maxscore.ToString();
     }
 

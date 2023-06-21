@@ -9,8 +9,8 @@ public class ScoreController : MonoBehaviour
 {
     private SnakePlayer player;
 
-    private int snake1Lives;
-    private int snake2Lives;
+    public int snake1Lives;
+    public int snake2Lives;
 
     public int maxLives = 3;
     public Sprite emptyHeart;
@@ -106,12 +106,19 @@ public class ScoreController : MonoBehaviour
             if (snake1Lives == 0)
             {
                 snakeController.isgamePaused = true;
-                StartCoroutine(DelayedGameOver(3.0f));
+                if(Snake1maxScore >= 200)
+                {
+                    StartCoroutine(DelayedSnakeWin1(3.0f));
+                }
+                else
+                {
+                    StartCoroutine(DelayedGameOver(3.0f));
+                }
             }
             else
             {
                 snakeController.isgamePaused = true;
-                StartCoroutine(DelayedReset1(3.0f));
+                StartCoroutine(DelayedResetSnake(3.0f));
             }
         }
         if (SceneManager.GetActiveScene().buildIndex == 2)
@@ -126,9 +133,10 @@ public class ScoreController : MonoBehaviour
                 }
                 else
                 {
-                    snakeController.isgamePaused = true;
-                    StartCoroutine(DelayedReset1(3.0f));
+                    snakeController.Snake1score = 0;
+                    snakeController.UpdateScoreUI();
                 }
+
             }
             else if (player == SnakePlayer.Snake2)
             {
@@ -140,48 +148,37 @@ public class ScoreController : MonoBehaviour
                 }
                 else
                 {
-                    snakeController.isgamePaused = true;
-                    StartCoroutine(DelayedReset2(3.0f));
+                    snakeController.Snake2score = 0;
+                    snakeController.UpdateScoreUI();
                 }
             }
         }  
     }
 
-    IEnumerator DelayedReset1(float delayInSeconds)
-    {
-        yield return new WaitForSeconds(delayInSeconds);
-        snakeController.isgamePaused = false;
-        snakeController.ResetState(SnakePlayer.Snake1);
-        SoundManager.Instance.Play(Sounds.Respawn);
-    }
-    IEnumerator DelayedReset2(float delayInSeconds)
-    {
-        yield return new WaitForSeconds(delayInSeconds);
-        snakeController.isgamePaused = false;
-        snakeController.ResetState(SnakePlayer.Snake2);
-        SoundManager.Instance.Play(Sounds.Respawn);
-    }
-
     IEnumerator DelayedSnakeWin1(float delayInSeconds)
     {
         yield return new WaitForSeconds(delayInSeconds);
-        snakeController.isgamePaused = false;
         gameManager.SnakeWin(SnakePlayer.Snake1, Snake1maxScore);
-        SoundManager.Instance.Play(Sounds.SnakeWin);
+        SoundManager.Instance.PlaySound(Sounds.SnakeWin);
     }
     IEnumerator DelayedSnakeWin2(float delayInSeconds)
     {
         yield return new WaitForSeconds(delayInSeconds);
-        snakeController.isgamePaused = false;
         gameManager.SnakeWin(SnakePlayer.Snake2, Snake2maxScore);
-        SoundManager.Instance.Play(Sounds.SnakeWin);
+        SoundManager.Instance.PlaySound(Sounds.SnakeWin);
     }
 
     IEnumerator DelayedGameOver(float delayInSeconds)
     {
         yield return new WaitForSeconds(delayInSeconds);
-        snakeController.isgamePaused = false;
         gameManager.GameOver(Snake1maxScore);
-        SoundManager.Instance.Play(Sounds.GameOver);
+        SoundManager.Instance.PlaySound(Sounds.GameOver);
+    }
+    IEnumerator DelayedResetSnake(float delayInSeconds)
+    {
+        yield return new WaitForSeconds(delayInSeconds);
+        snakeController.ResetSnake();
+        snakeController.isgamePaused = false;
+        SoundManager.Instance.PlaySound(Sounds.Respawn);
     }
 }
