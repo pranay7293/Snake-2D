@@ -97,7 +97,7 @@ Only one Power-up will be active at a time. Collecting another power-up while ha
     <img src="Assets/Sprites/GreenFood.png" alt="Alt Text" width="100" height="120"> <div style="margin-right: 20px;"> <img src="Assets/Sprites/RedFood.png" alt="Alt Text" width="100" height="120">
 
     <div style="display: flex; justify-content: flex-start;">
-    <img src="Assets/Sprites/GreenFood.png" alt="Alt Text" width="100" height="120" style="margin-right: 20px;"> <img src="Assets/Sprites/RedFood.png" alt="Alt Text" width="100" height="120">
+    <img src="Assets/Sprites/GreenFood.png" alt="Alt Text" width="100" height="120" style="margin-right: 200px;"> <img src="Assets/Sprites/RedFood.png" alt="Alt Text" width="100" height="120">
 </div>
     
     
