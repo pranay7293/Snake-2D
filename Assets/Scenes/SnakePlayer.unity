@@ -29923,13 +29923,13 @@ MonoBehaviour:
   scoreTextSnake1: {fileID: 78511810}
   scoreTextSnake2: {fileID: 0}
   scoreController: {fileID: 78511812}
-  Snake1player: {fileID: 1193528650}
-  Snake2player: {fileID: 0}
   floatingTextPrefab: {fileID: 7306759292936583390, guid: 08db2d908292d0442b949cad626b7cbc, type: 3}
   shieldeffect: {fileID: 1618591935}
   speedUp: {fileID: 2104571247}
   scoreBoost: {fileID: 762204218}
   isgamePaused: 0
+  Snake1score: 0
+  Snake2score: 0
   gridArea: {fileID: 1946819482}
   segmentPrefab: {fileID: 7482117466368177803, guid: 1150aecab299ed342a3ee78cee06658a, type: 3}
 --- !u!1 &1211155008
@@ -30256,7 +30256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.7058824}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.6862745}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
