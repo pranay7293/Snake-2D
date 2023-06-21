@@ -102,7 +102,7 @@ Only one Power-up will be active at a time. Collecting another power-up while ha
 
 ### Shield Power   
          
-<img src="Assets/Sprites/Shiled22.png" alt="Alt Text" width="120" height="120">
+<img src="Assets/Sprites/Shield22.png" alt="Alt Text" width="120" height="120">
 
 ### SpeedUp Power   
 
