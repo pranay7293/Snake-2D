@@ -48,16 +48,26 @@ Lobby: Play: Will lead to GamePlay mode selection.
        Music Icon: Will enable and disable Background music.
        Speaker Icons: Will enable and disable Game Sounds. 
 
- 1 Player GamePlay: Will have Score, Lives, Floating Text elements, and Pause buttons. 
+   1 Player GamePlay: Will have Score, Lives, Floating Text elements, and Pause buttons. 
    Pause: will affect gameplay to pause and the player will get options to Resume and Exit. 
    Resume: will resume the gameplay from where it is Paused. 
    Exit: will load the Lobby page. 
    On GameOver: Player will get Reply and Exit options. 
    Reply: Replay the same mode. 
    Exit: will load the Lobby page. 
-   On You Win: Player will get Replyagain and Exit options.
+   On YouWin: Player will get Replyagain and Exit options.
    Replyagain: Replay the same mode. 
    Exit: will load the Lobby page.
+   
+   2 Players GamePlay: Will have Score, Lives, Floating Text elements, and Pause buttons. 
+   Pause: will affect gameplay to pause and the player will get options to Resume and Exit. 
+   Resume: will resume the gameplay from where it is Paused. 
+   Exit: will load the Lobby page.
+   On YouWin: Player will get Replyagain and Exit options. One Player should win all the time.
+   Replyagain: Replay the same mode. 
+   Exit: will load the Lobby page.
+
+   
 
 
 
