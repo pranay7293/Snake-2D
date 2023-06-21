@@ -121,6 +121,8 @@ Only one Power-up will be active at a time. Collecting another power-up while ha
 
 ![Alt Text](Assets/Sprites/Snake2.png)
 
+### Lobby
+
 ![image](https://github.com/pranay7293/Snake-2D/assets/119421688/30ef2c85-566a-4e81-a950-9e72f43b3fa7)
 
 
