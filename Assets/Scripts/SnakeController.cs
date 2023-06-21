@@ -356,7 +356,6 @@ public class SnakeController : MonoBehaviour
         isgamePaused = true;
         yield return new WaitForSeconds(delayInSeconds);
         ResetState();
-        isgamePaused = false;
         SoundManager.Instance.PlaySound(Sounds.Respawn);
     }
 
@@ -364,6 +363,7 @@ public class SnakeController : MonoBehaviour
     {
         if (scoreController.snake1Lives > 0 && scoreController.snake2Lives > 0)
         {
+            isgamePaused = false;
             if (player == SnakePlayer.Snake1)
             {
                 ResetSnake();
