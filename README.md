@@ -5,24 +5,37 @@ Snake 2D Game has two GamePlay modes.
 
 ## Snake functionally: 
 
-### Movement:
+#### Movement:
  1. Core functionality of a snake where snake should move in all 4 directions ⬆️ ⬇️ ⬅️➡️
  2. Screen wrapping for all the directions ⬆️ ⬇️ ⬅️➡️
     
-### Food:
+#### Food:
 This game has two types of food for Snakes. Foods will randomly spawn random locations on the SnakeGrid and random intervals. 
  1. GreenFood: This will increase the length of the Snake player.
  2. RedFood: This will reduce the length of the Snake player.
 
+## Power Ups: 
+
+Shield: 
+- Will activate by collecting Shield items.
+- It will shield Snake from bites.
+- Will automatically be disabled after its lifetime.
+SpeedBoost:
+- Will activate by collecting SpeedBoost items.
+- It will increase Snake's movement speed.
+- Will automatically be disabled after its lifetime.
+
+
+
 ## Health System: 
- ### 1. Single Player Mode:
+ #### 1. Single Player Mode:
  - Snake Player will have 3 lives.
  - It will lose one life when it's biting itself.
  - It will respawn in the game and its score will reset.
  - After losing all three lives, the game will be over.
  - Its max score among three lives will be displayed as Winner Max Score on Game Over Screen.
  - If the max score reaches the set Target Score, the Game Win will appear with Winner's Max Score.
- ### 2. Two-Player Mode:
+ #### 2. Two-Player Mode:
  - Each Snake Player will have 3 lives.
  - It will lose one life when it gets bitten by the other Snake and bites itself.
  - The Snake that gets bitten score will reset to zero, and Snake which bites score remains the same.
@@ -30,11 +43,11 @@ This game has two types of food for Snakes. Foods will randomly spawn random loc
  - The snake that bites should get benefited from its length as the score remains the same.
  - The snake which lost all 3 lives will lose and the other that bites thrice will win. 
 
-### Score: 
+#### Score: 
  1. GreenFood will increase the Snake player's score.
  2. RedFood will decrease the Snake player's score.
 
-### Death and Win Condition: 
+#### Death and Win Condition: 
  It's simple for both GamePlay modes the Snake that losses all 3 lives will die.
   1. Single Player Mode: If any Max Score reaches Set Target among 3 lives. It will win or it's Game Over.
   2. Two-Player Mode: The snake that remains with lives will win. 
