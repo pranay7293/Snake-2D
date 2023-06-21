@@ -128,6 +128,30 @@ Only one Power-up will be active at a time. Collecting another power-up while ha
 
 ![image](https://github.com/pranay7293/Snake-2D/assets/119421688/98eb9fef-f9c7-42a8-ab97-b8da6821f226)
 
+### 1 Player GamePlay: 
+
+![image](https://github.com/pranay7293/Snake-2D/assets/119421688/3ff45278-17e4-4527-8c72-f6e91c08c9b3)
+
+### 2 Players GamePlay: 
+
+![image](https://github.com/pranay7293/Snake-2D/assets/119421688/23bbe7d9-f2e2-4e2c-922a-1981b21a28f5)
+
+#### Snake2 bites Snake1: 
+
+![image](https://github.com/pranay7293/Snake-2D/assets/119421688/805c324b-c390-4302-8805-831ffa2179a1)
+
+### You WIN!: 
+
+![image](https://github.com/pranay7293/Snake-2D/assets/119421688/055b7c6d-b076-41e8-ac2b-f196ecf63220)
+
+### Game Over: 
+
+![image](https://github.com/pranay7293/Snake-2D/assets/119421688/dbdcb719-a139-423c-b69a-5c7622334f0c)
+
+
+
+
+
 
 
 
