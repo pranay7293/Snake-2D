@@ -48,7 +48,7 @@ Lobby: Play: Will lead to GamePlay mode selection.
        Music Icon: Will enable and disable Background music.
        Speaker Icons: Will enable and disable Game Sounds. 
 
-   1 Player GamePlay: Will have Score, Lives, Floating Text elements, and Pause buttons. 
+   1 Player GamePlay: Will have Score, Lives, Floating Text elements, and Pause buttons. Movement by: ⬆️ ⬇️ ⬅️➡️
    Pause: will affect gameplay to pause and the player will get options to Resume and Exit. 
    Resume: will resume the gameplay from where it is Paused. 
    Exit: will load the Lobby page. 
@@ -60,6 +60,8 @@ Lobby: Play: Will lead to GamePlay mode selection.
    Exit: will load the Lobby page.
    
    2 Players GamePlay: Will have Score, Lives, Floating Text elements, and Pause buttons. 
+   Player1: Movement by: ⬆️ ⬇️ ⬅️➡️
+   Player2: Movement by: W A S D
    Pause: will affect gameplay to pause and the player will get options to Resume and Exit. 
    Resume: will resume the gameplay from where it is Paused. 
    Exit: will load the Lobby page.
