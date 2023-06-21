@@ -32,10 +32,6 @@ Only one Power-up will be active at a time. Collecting another power-up while ha
 - Will automatically be disabled after its lifetime.
 
 
-
-
-
-
 ## Health System: 
  #### 1. Single Player Mode:
  - Snake Player will have 3 lives.
