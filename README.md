@@ -18,11 +18,11 @@ This game has two types of food for Snakes. Foods will randomly spawn random loc
 
 Shield: 
 - Will activate by collecting Shield items.
-- It will shield Snake from bites.
+- It will shield Snake from bites, while it is active.
 - Will automatically be disabled after its lifetime.
 SpeedBoost:
 - Will activate by collecting SpeedBoost items.
-- It will increase Snake's movement speed.
+- It will increase Snake's movement speed, while it is active.
 - Will automatically be disabled after its lifetime.
 
 
