@@ -67,7 +67,7 @@ Only one Power-up will be active at a time. Collecting another power-up while ha
  - Music Icon: Will enable and disable Background music.
  - Speaker Icons: Will enable and disable Game Sounds. 
 
-#### 1 Player GamePlay: 
+#### One Player GamePlay: 
 - Will have Score, Lives, Floating Text elements, and Pause buttons. Movement by: ⬆️ ⬇️ ⬅️➡️
 - Pause: will affect gameplay to pause and the player will get options to Resume and Exit.
 - Resume: will resume the gameplay from where it is Paused.
@@ -79,7 +79,7 @@ Only one Power-up will be active at a time. Collecting another power-up while ha
 - Replyagain: Replay the same mode.
 - Exit: will load the Lobby page.
    
-#### 2 Players GamePlay: 
+#### Two Players GamePlay: 
 - Will have Score, Lives, Floating Text elements, and Pause buttons.
 - Player1: Movement by: ⬆️ ⬇️ ⬅️➡️
 - Player2: Movement by: W A S D
@@ -128,11 +128,11 @@ Only one Power-up will be active at a time. Collecting another power-up while ha
 
 ![image](https://github.com/pranay7293/Snake-2D/assets/119421688/98eb9fef-f9c7-42a8-ab97-b8da6821f226)
 
-### 1 Player GamePlay: 
+### One Player GamePlay: 
 
 ![image](https://github.com/pranay7293/Snake-2D/assets/119421688/3ff45278-17e4-4527-8c72-f6e91c08c9b3)
 
-### 2 Players GamePlay: 
+### Two Players GamePlay: 
 
 ![image](https://github.com/pranay7293/Snake-2D/assets/119421688/23bbe7d9-f2e2-4e2c-922a-1981b21a28f5)
 
