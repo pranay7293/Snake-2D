@@ -1,5 +1,5 @@
 # This is my Snake 2D Game. 
-Which has two GamePlay modes. 
+Snake 2D Game has two GamePlay modes. 
  1. Single Player (One Snake)
  2. Two Players (Two Snakes)
 
