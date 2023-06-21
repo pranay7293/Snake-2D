@@ -92,22 +92,27 @@ Only one Power-up will be active at a time. Collecting another power-up while ha
 
    
 
-          
-<img src="Assets/Sprites/GreenFood.png" alt="Alt Text" width="100" height="120">  <img src="Assets/Sprites/RedFood.png" alt="Alt Text" width="100" height="120">
+         ### Green Food
+  
+<img src="Assets/Sprites/GreenFood.png" alt="Alt Text" width="100" height="120">  
+
+         ### Red Food 
+         
+<img src="Assets/Sprites/RedFood.png" alt="Alt Text" width="100" height="120">
+
+         ### Shield Power   
+         
+<img src="Assets/Sprites/Shiled.png" alt="Alt Text" width="120" height="120">
+
+         ### SpeedUp Power   
+
+<img src="Assets/Sprites/SpeedUp.png" alt="Alt Text" width="100" height="100"> 
+
+         ### ScoreBoost Power   
+
+<img src="Assets/Sprites/ScoreBoost.png" alt="Alt Text" width="100" height="100">
 
 
-<img src="Assets/Sprites/Shiled.png" alt="Alt Text" width="120" height="120"> <img src="Assets/Sprites/SpeedUp.png" alt="Alt Text" width="100" height="100"> <img src="Assets/Sprites/ScoreBoost.png" alt="Alt Text" width="100" height="100">
-
-
-
-
-
-![Shield](Assets/Sprites/Shiled.png)                 ![SpeedBoost](Assets/Sprites/SpeedUp.png)                 ![ScoreBoost](Assets/Sprites/ScoreBoost.png)    
-
-
-
-
-       
 
 
 
