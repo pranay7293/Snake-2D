@@ -15,15 +15,24 @@ This game has two types of food for Snakes. Foods will randomly spawn random loc
  2. RedFood: This will reduce the length of the Snake player.
 
 ## Power Ups: 
+This game has three types of Power-Ups for Snakes. Power-Ups will randomly spawn random locations on the SnakeGrid and random intervals. 
+Only one Power-up will be active at a time. Collecting another power-up while having a power-up will give an error message.
 
-Shield: 
+#### Shield: 
 - Will activate by collecting Shield items.
 - It will shield Snake from bites, while it is active.
 - Will automatically be disabled after its lifetime.
-SpeedBoost:
+#### SpeedBoost:
 - Will activate by collecting SpeedBoost items.
 - It will increase Snake's movement speed, while it is active.
 - Will automatically be disabled after its lifetime.
+#### ScoreBoost:
+- Will activate by collecting ScoreBoost items.
+- It will double the score gained by Snake during its active period.
+- Will automatically be disabled after its lifetime.
+
+
+
 
 
 
