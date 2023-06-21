@@ -92,27 +92,34 @@ Only one Power-up will be active at a time. Collecting another power-up while ha
 
    
 
-         ### Green Food
+### Green Food
   
 <img src="Assets/Sprites/GreenFood.png" alt="Alt Text" width="100" height="120">  
 
-         ### Red Food 
+ ### Red Food 
          
 <img src="Assets/Sprites/RedFood.png" alt="Alt Text" width="100" height="120">
 
-         ### Shield Power   
+### Shield Power   
          
 <img src="Assets/Sprites/Shiled.png" alt="Alt Text" width="120" height="120">
 
-         ### SpeedUp Power   
+### SpeedUp Power   
 
 <img src="Assets/Sprites/SpeedUp.png" alt="Alt Text" width="100" height="100"> 
 
-         ### ScoreBoost Power   
+### ScoreBoost Power   
 
 <img src="Assets/Sprites/ScoreBoost.png" alt="Alt Text" width="100" height="100">
 
 
+### Snake One    
+
+<img src="Assets/Sprites/Snake1.png" alt="Alt Text" width="100" height="100">
+
+### Snake Two    
+
+<img src="Assets/Sprites/Snake2.png" alt="Alt Text" width="100" height="100">
 
 
 
