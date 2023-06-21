@@ -27,7 +27,7 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        //PlayMusic(global::Sounds.BGMusic);
+        PlayMusic(global::Sounds.BGMusic);
     }
     public void PlayMusic(Sounds sound)
     {
@@ -43,7 +43,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void Play(Sounds sound)
+    public void PlaySound(Sounds sound)
     {
         AudioClip clip = getSoundClip(sound);
         if (clip != null)
@@ -65,9 +65,20 @@ public class SoundManager : MonoBehaviour
     }
     public void StopMusic()
     {
-        soundMusic.Stop();
+        soundMusic.enabled = false;
     }
-
+    public void StopSfx()
+    {
+        soundEffect.enabled = false;
+    }
+    public void StartMusic()
+    {
+        soundMusic.enabled = true;
+    }
+    public void StartSfx()
+    {
+        soundEffect.enabled = true;
+    }
 }
 
 [Serializable]

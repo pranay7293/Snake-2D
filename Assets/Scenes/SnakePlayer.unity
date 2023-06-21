@@ -13179,6 +13179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f2b2956b5761349bcf14e3a93786a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  snake1Lives: 0
+  snake2Lives: 0
   maxLives: 3
   emptyHeart: {fileID: 21300000, guid: 074625b8b4c34c3498a63735db575483, type: 3}
   Snake1fullHeart: {fileID: 21300000, guid: b21f31f650111b741b383e507a3ff8de, type: 3}
@@ -29918,11 +29920,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: 0
-  initialSize: 4
-  speed: 5
   scoreTextSnake1: {fileID: 78511810}
   scoreTextSnake2: {fileID: 0}
   scoreController: {fileID: 78511812}
+  Snake1player: {fileID: 1193528650}
+  Snake2player: {fileID: 0}
   floatingTextPrefab: {fileID: 7306759292936583390, guid: 08db2d908292d0442b949cad626b7cbc, type: 3}
   shieldeffect: {fileID: 1618591935}
   speedUp: {fileID: 2104571247}
