@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FloatingTextController : MonoBehaviour
 {
@@ -9,5 +8,4 @@ public class FloatingTextController : MonoBehaviour
     {
         Destroy(gameObject, secondToDestroy);
     }
-
 }

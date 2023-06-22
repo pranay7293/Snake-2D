@@ -24,13 +24,9 @@ public class LobbyController : MonoBehaviour
     private bool isDefaultMusicSprite = true;
     private bool isDefaultSoundSprite = true;
 
-
     public GameObject LevelSelection;
 
-    // Start is called before the first frame update
-
-
-    void Start()
+    private void Start()
     {
         buttonPlay.onClick.AddListener(LoadPlayModes);
         Oneplayer.onClick.AddListener(OnePlayerMode);
@@ -39,7 +35,6 @@ public class LobbyController : MonoBehaviour
         Music.onClick.AddListener(ChangeMusicSprite);
         Sound.onClick.AddListener(ChangeSoundSprite);
     }
-
     
     private void ChangeSoundSprite()
     {
@@ -54,7 +49,6 @@ public class LobbyController : MonoBehaviour
             SoundManager.Instance.StartSfx();
         }
         isDefaultSoundSprite = !isDefaultSoundSprite;
-
     }
 
     private void ChangeMusicSprite()
@@ -70,7 +64,6 @@ public class LobbyController : MonoBehaviour
             SoundManager.Instance.StartMusic();
         }
         isDefaultMusicSprite = !isDefaultMusicSprite;
-
     }
 
     private void BacktoLobby()

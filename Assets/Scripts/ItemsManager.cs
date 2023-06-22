@@ -64,6 +64,5 @@ public class ItemsManager : MonoBehaviour
         float y = Random.Range(bounds.min.y, bounds.max.y);
 
         Instantiate(scoreBoost, new Vector3(Mathf.Round(x), Mathf.Round(y), 0.0f), Quaternion.identity);
-    }  
-
+    }
 }

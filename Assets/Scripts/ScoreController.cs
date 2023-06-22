@@ -30,10 +30,6 @@ public class ScoreController : MonoBehaviour
     {
         snake1Lives = maxLives;
         snake2Lives = maxLives;
-    }
-
-    private void Update()
-    {
         UpdateLivesUI();
     }
 
@@ -81,7 +77,6 @@ public class ScoreController : MonoBehaviour
         snakeController = controller;
     }
 
-
     public void MaxScore(int points, SnakePlayer player)
     {
         if (player == SnakePlayer.Snake1)
@@ -103,6 +98,7 @@ public class ScoreController : MonoBehaviour
         if(SceneManager.GetActiveScene().buildIndex == 1)
         {
             snake1Lives--;
+            UpdateLivesUI();
             if (snake1Lives == 0)
             {
                 snakeController.isgamePaused = true;
@@ -126,6 +122,7 @@ public class ScoreController : MonoBehaviour
             if (player == SnakePlayer.Snake1)
             {
                 snake1Lives--;
+                UpdateLivesUI();
                 if (snake1Lives == 0)
                 {
                     snakeController.isgamePaused = true;
@@ -141,6 +138,7 @@ public class ScoreController : MonoBehaviour
             else if (player == SnakePlayer.Snake2)
             {
                 snake2Lives--;
+                UpdateLivesUI();
                 if (snake2Lives == 0)
                 {
                     snakeController.isgamePaused = true;
