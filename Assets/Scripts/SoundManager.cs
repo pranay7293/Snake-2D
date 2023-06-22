@@ -31,7 +31,7 @@ public class SoundManager : MonoBehaviour
     }
     public void PlayMusic(Sounds sound)
     {
-        AudioClip clip = getSoundClip(sound);
+        AudioClip clip = GetSoundClip(sound);
         if (clip != null)
         {
             soundMusic.clip = clip;
@@ -45,7 +45,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySound(Sounds sound)
     {
-        AudioClip clip = getSoundClip(sound);
+        AudioClip clip = GetSoundClip(sound);
         if (clip != null)
         {
             soundEffect.PlayOneShot(clip);
@@ -56,7 +56,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    private AudioClip getSoundClip(Sounds sound)
+    private AudioClip GetSoundClip(Sounds sound)
     {
         SoundType item = Array.Find(Sounds, i => i.soundType == sound);
         if (item != null)
@@ -86,7 +86,6 @@ public class SoundType
 {
     public Sounds soundType;
     public AudioClip soundClip;
-
 }
 
 public enum Sounds
@@ -107,5 +106,4 @@ public enum Sounds
     Respawn,
     GameOver,
     SnakeWin
-
 }

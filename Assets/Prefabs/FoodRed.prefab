@@ -124,5 +124,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4308f0b4a98f7042824740749934cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodtype: 1
+  itemType: 1
   activeTime: 6

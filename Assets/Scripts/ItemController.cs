@@ -1,16 +1,16 @@
 using System.Collections;
 using UnityEngine;
 
-public class FoodController : MonoBehaviour
+public class ItemController : MonoBehaviour
 {
     [SerializeField]
-    private FoodType foodtype;
-
-    private BoxCollider2D gridArea;
-    Bounds bounds;
+    private ItemType itemType;
 
     [SerializeField]
     private float activeTime;
+
+    private BoxCollider2D gridArea;
+    Bounds bounds;
 
     private void Start()
     {
@@ -19,7 +19,7 @@ public class FoodController : MonoBehaviour
     }
     private void OnEnable()
     {
-        StartCoroutine(FoodLifetime());
+        StartCoroutine(ItemLifetime());
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -35,20 +35,24 @@ public class FoodController : MonoBehaviour
 
         transform.position = new Vector3(Mathf.Round(x), Mathf.Round(y), 0.0f);
     }
-    IEnumerator FoodLifetime()
+    IEnumerator ItemLifetime()
     {
         yield return new WaitForSeconds(activeTime);
         Destroy(gameObject);
     }
-    public FoodType GetFoodType()
+   
+    public ItemType GetItemType()
     {
-        return foodtype;
+        return itemType;
     }
 }
 
 //Enum for food type
-public enum FoodType
+public enum ItemType
 {
     MassGainer,
-    MassBurner
+    MassBurner,
+    ShieldEffect,
+    SpeedUp,
+    ScoreBoost
 }
