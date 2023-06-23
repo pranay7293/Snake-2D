@@ -5,22 +5,22 @@ public class ItemController : MonoBehaviour
 {
     [SerializeField]
     private ItemType itemType;
-
     [SerializeField]
     private float activeTime;
 
-    private BoxCollider2D gridArea;
-    Bounds bounds;
+    public BoxCollider2D gridArea;
+    private Bounds bounds;
 
     private void Start()
     {
-        gridArea = GameObject.FindGameObjectWithTag("GridArea").GetComponent<BoxCollider2D>();
         bounds = gridArea.bounds;
-    }
-    private void OnEnable()
-    {
-        StartCoroutine(ItemLifetime());
-    }
+        StartCoroutine(ItemLifetime(ItemType.GreenFood));
+        StartCoroutine(ItemLifetime(ItemType.RedFood));
+        StartCoroutine(ItemLifetime(ItemType.ShieldEffect));
+        StartCoroutine(ItemLifetime(ItemType.SpeedUp));
+        StartCoroutine(ItemLifetime(ItemType.ScoreBoost));
+    }   
+   
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<SnakeController>() != null)
@@ -35,12 +35,27 @@ public class ItemController : MonoBehaviour
 
         transform.position = new Vector3(Mathf.Round(x), Mathf.Round(y), 0.0f);
     }
-    IEnumerator ItemLifetime()
+    IEnumerator ItemLifetime(ItemType itemType)
     {
-        yield return new WaitForSeconds(activeTime);
-        Destroy(gameObject);
-    }
-   
+        float activeTime = this.activeTime;
+
+        while (true)
+        {
+            switch (itemType)
+            {
+                case ItemType.GreenFood:
+                case ItemType.RedFood:
+                case ItemType.ShieldEffect:
+                case ItemType.SpeedUp:
+                case ItemType.ScoreBoost:
+                    break;
+                default:
+                    break;
+            }
+            yield return new WaitForSeconds(activeTime);
+            RandomizedPosition();
+        }
+    }   
     public ItemType GetItemType()
     {
         return itemType;
@@ -50,8 +65,8 @@ public class ItemController : MonoBehaviour
 //Enum for food type
 public enum ItemType
 {
-    MassGainer,
-    MassBurner,
+    GreenFood,
+    RedFood,
     ShieldEffect,
     SpeedUp,
     ScoreBoost
