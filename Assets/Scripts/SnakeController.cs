@@ -368,16 +368,16 @@ public class SnakeController : MonoBehaviour
 
     public void DisplayFloatingText(string text, Vector3 position)
     {
-        GameObject prefab = Instantiate(floatingTextPrefab, position, Quaternion.identity);
-        prefab.GetComponentInChildren<TextMesh>().text = text;
-        //StartCoroutine(TextLifetime()); Kept this for code reviewer.
+        GameObject Textprefab = Instantiate(floatingTextPrefab, position, Quaternion.identity);
+        Textprefab.GetComponentInChildren<TextMesh>().text = text;
+        StartCoroutine(TextLifetime(Textprefab)); 
     }
 
-    //IEnumerator TextLifetime()
-    //{
-    //    yield return new WaitForSeconds(TextToDestroy);
-    //    DestroyImmediate(floatingTextPrefab, true);
-    //}
+    IEnumerator TextLifetime(GameObject PrefabText)
+    {
+        yield return new WaitForSeconds(TextToDestroy);
+        Destroy(PrefabText);
+    }
 
     private void Grow()
     {
