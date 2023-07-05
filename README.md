@@ -3,6 +3,11 @@ Snake 2D Game has two GamePlay modes.
  1. Single Player (One Snake)
  2. Two Players (Two Snakes)
 
+[Click here to Play the Game](https://pranay7293.itch.io/snake-2d-game)
+[Click here to Watch the Gameplay](https://youtu.be/pEb1PrVhOt8)
+
+
+
 ## Snake functionally: 
 
 #### Movement:
