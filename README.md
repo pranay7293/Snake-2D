@@ -128,7 +128,7 @@ Only one Power-up will be active at a time. Collecting another power-up while ha
 
 ![image](https://github.com/pranay7293/Snake-2D/assets/119421688/98eb9fef-f9c7-42a8-ab97-b8da6821f226)
 
-### One Player GamePlay: 
+### One-Player GamePlay: 
 
 ![image](https://github.com/pranay7293/Snake-2D/assets/119421688/3ff45278-17e4-4527-8c72-f6e91c08c9b3)
 
